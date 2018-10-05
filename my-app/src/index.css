@@ -1,0 +1,16 @@
+div {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.leaflet-container {
+  height: 500px;
+  width: 500px;
+  margin: 40px auto;
+}
+.bg-light {
+  background-color: #1dbe2b !important;
+}
+.navbar-brand{
+  color: whitesmoke !important;
+}
