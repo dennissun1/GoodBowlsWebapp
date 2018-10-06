@@ -25,7 +25,20 @@
                 id: 'mapbox.streets',
                 accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA'
             }).addTo(mymap);
-            var marker = L.marker([35.996435, -78.916603]).addTo(mymap);
+            
+            var sell1 = L.marker([35.996435, -78.916603]).addTo(mymap).bindPopup("<b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits");
+            var sell2 = L.marker([35.9111483,-79.0713636076655]).addTo(mymap).bindPopup("<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits");
+            var sell3 = L.marker([35.8801334,-79.0660226]).addTo(mymap).bindPopup("<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits");
+            var sell4 = L.marker([36.07355195,-79.09970025]).addTo(mymap).bindPopup("<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits");
+            
+            var farmIcon = L.icon({
+                iconUrl: 'farm-marker.png',
+                shadowUrl: 'marker-shadow.png',
+            });
+            
+            var farm1 = L.marker([35.3016102,-78.2229939], {icon: farmIcon}).addTo(mymap).bindPopup("<b>Wise Farms</b><br /><br />Sweet Potatoes<br />Greens (Collads/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes)");
+            var farm2 = L.marker([35.4574095,-77.6873196,-78.2229939], {icon: farmIcon}).addTo(mymap).bindPopup("<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collads/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes");
+            var farm3 = L.marker([36.348511,-78.267849], {icon: farmIcon}).addTo(mymap).bindPopup("<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collads/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes");
         </script>
     </body>
 
