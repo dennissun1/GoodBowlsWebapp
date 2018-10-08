@@ -14,3 +14,6 @@ div {
 .navbar-brand{
   color: whitesmoke !important;
 }
+.navbar-text {
+  color: whitesmoke !important;
+}
