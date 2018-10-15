@@ -24,11 +24,11 @@ class My_Navbar extends React.Component {
                     <div>
                         <NavbarBrand href="/" className="class1">Good Bowls</NavbarBrand>
                     </div>
-                    <div>
-                        <span className="navbar-text">
-                            WE LOVE GOOD BOWLS!
-                        </span>
-                    </div>
+                    {/*<div>*/}
+                        {/*<span className="navbar-text">*/}
+                            {/*WE LOVE GOOD BOWLS!*/}
+                        {/*</span>*/}
+                    {/*</div>*/}
                     <NavbarToggler onClick={this.toggleNavbar} className="class2" />
                     <Collapse isOpen={!this.state.collapsed} navbar>
                         <Nav navbar>
