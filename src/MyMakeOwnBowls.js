@@ -4,7 +4,7 @@ import './Recipes.css';
 class My_MakeOwnBowls extends React.Component {
     render() {
         return(
-            <div>
+            <div class = "recipes">
 
 
 <h1>Make Your Own Good Bowls</h1>
