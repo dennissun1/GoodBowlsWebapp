@@ -1,4 +1,5 @@
 import React from "react";
+import './Recipes.css';
 
 class My_MakeOwnBowls extends React.Component {
     render() {
@@ -11,7 +12,8 @@ class My_MakeOwnBowls extends React.Component {
 
 <h2>Chicken Burrito Style Bowl</h2>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="video-container">    
+<iframe src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
 
 <h3>Ingredients</h3>
 <p>1 head cauliflower<br />
