@@ -13,7 +13,7 @@ class My_MakeOwnBowls extends React.Component {
 <h2>Chicken Burrito Style Bowl</h2>
 
 <div class="video-container">    
-<iframe src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
+<iframe title="video1" src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
 <h3>Ingredients</h3>
 <p>1 head cauliflower<br />
@@ -39,7 +39,7 @@ class My_MakeOwnBowls extends React.Component {
 <h2>Vegetables & Chicken over Rice with Coconut Curry Sauce</h2>
 
 <div class="video-container">    
-<iframe src="https://www.youtube.com/embed/dfR_LdA3fPI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
+<iframe title="video2" src="https://www.youtube.com/embed/dfR_LdA3fPI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
 <h3>Ingredients</h3>
 <p>1 head cauliflower<br />
@@ -64,7 +64,7 @@ class My_MakeOwnBowls extends React.Component {
 <h2>Sausage & Peppers Bowl with Cheese Grits</h2>
 
 <div class="video-container">    
-<iframe src="https://www.youtube.com/embed/AEhBwiIEdj4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div> 
+<iframe title="video3" src="https://www.youtube.com/embed/AEhBwiIEdj4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
 <h3>Ingredients</h3>
 <p>1 head cauliflower<br />
