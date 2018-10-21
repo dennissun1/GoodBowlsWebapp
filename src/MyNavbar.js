@@ -20,7 +20,7 @@ class My_Navbar extends React.Component {
     render() {
         return (
             <div>
-                <Navbar color = 'light' inverse>
+                <Navbar color = 'light'>
                     <div>
                         <NavbarBrand href="/" className="class1">Good Bowls</NavbarBrand>
                     </div>
