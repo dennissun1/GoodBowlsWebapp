@@ -30,22 +30,22 @@ class My_Map extends React.Component {
                     />
                     <Marker position={position} zoom>
                         <Popup>
-                            <b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Durham Co-op Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.9111483,-79.0713636076655]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.8801334,-79.0660226]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[36.07355195,-79.09970025]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.3016102,-78.2229939]} icon={farmIcon} zoom>
@@ -60,7 +60,7 @@ class My_Map extends React.Component {
                     </Marker>
                     <Marker position={[36.348511,-78.267849]} icon={farmIcon} zoom>
                         <Popup>
-                            <b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes
+                            <b>Bender Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes
                         </Popup>
                     </Marker>
                 </Map>
