@@ -30,7 +30,6 @@ const styles = theme => ({
     },
     appBarShift: {
         width: `70vw`,
-        marginLeft: `30vw`,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -67,8 +66,9 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        marginLeft: '-30vw',
-        marginTop: 100,
+        marginLeft: `-30vw`,
+        overflow: 'auto',
+        height: `100vh`,
     },
     navlink: {
         color: 'black',
@@ -84,7 +84,9 @@ const styles = theme => ({
         marginLeft: 0,
     },
     toolBar: {
-    }
+        paddingRight: `1vw`,
+    },
+    appBarSpacer: theme.mixins.toolbar,
 });
 
 class MyMain extends React.Component {
@@ -97,7 +99,7 @@ class MyMain extends React.Component {
     };
 
     handleDrawerClose = () => {
-        this.setState({ open: false });
+        this.setState({open: false});
     };
 
     render() {
@@ -105,67 +107,73 @@ class MyMain extends React.Component {
         const { open } = this.state;
 
         return (
-            <div className={classes.root}>
-                <CssBaseline />
-                <AppBar
-                    position="fixed"
-                    className={classNames(classes.appBar, {
-                        [classes.appBarShift]: open,
-                    })}
-                >
-                    <Toolbar disableGutters={!open} className={classes.toolBar}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Open drawer"
-                            onClick={this.handleDrawerOpen}
-                            className={classNames(classes.menuButton, open && classes.hide)}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography
-                            component="title"
-                            variant="h6"
-                            color="inherit"
-                            noWrap
-                            className={classes.title}
-                        >
-                            Good Bowls
-                        </Typography>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    className={classes.drawer}
-                    variant="persistent"
-                    anchor="left"
-                    open={open}
-                    classes={{
-                        paper: classes.drawerPaper,
-                    }}>
-                    <div className={classes.drawerHeader}>
-                        <Typography variant="h5" noWrap className={classes.drawerHeaderText}>Welcome!</Typography>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            <ChevronLeftIcon/>
-                        </IconButton>
-                    </div>
-                    <List>
-                        <NavLink to='/' className={classes.navlink}>
-                            <ListItem button>
-                                Map
-                            </ListItem>
-                        </NavLink>
-                        <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
-                        <NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>
-                    </List>
-                </Drawer>
-                <main className={classNames(classes.content, {[classes.contentShift]: open,})}>
-                    <Switch>
-                        <Route exact path = '/' component={MyMap}/>
-                        <Route exact path = '/map' component={MyMap}/>
-                        <Route exact path = '/feed' component={MyFeed}/>
-                        <Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>
-                    </Switch>
-                </main>
-            </div>
+            <React.Fragment>
+                <CssBaseline/>
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <AppBar
+                        position="fixed"
+                        className={classNames(classes.appBar, {
+                            [classes.appBarShift]: open,
+                        })}
+                    >
+                        <Toolbar disableGutters={!open} className={classes.toolBar}>
+                            <IconButton
+                                color="inherit"
+                                aria-label="Open drawer"
+                                onClick={this.handleDrawerOpen}
+                                className={classNames(classes.menuButton, open && classes.hide)}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            <Typography
+                                component="title"
+                                variant="h6"
+                                color="inherit"
+                                noWrap
+                                className={classes.title}
+                            >
+                                Good Bowls
+                            </Typography>
+                        </Toolbar>
+                    </AppBar>
+                    <Drawer
+                        className={classes.drawer}
+                        variant="persistent"
+                        anchor="left"
+                        open={open}
+                        classes={{
+                            paper: classes.drawerPaper,
+                        }}>
+                        <div className={classes.drawerHeader}>
+                            <Typography variant="h5" noWrap className={classes.drawerHeaderText}>Welcome!</Typography>
+                            <IconButton onClick={this.handleDrawerClose}>
+                                <ChevronLeftIcon/>
+                            </IconButton>
+                        </div>
+                        <List>
+                            <NavLink to='/' className={classes.navlink}>
+                                <ListItem button>
+                                    Map
+                                </ListItem>
+                            </NavLink>
+                            <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
+                            <NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>
+                        </List>
+                    </Drawer>
+                    <main className={classNames(classes.content, {[classes.contentShift]: open,})}>
+                        <div className={classes.appBarSpacer} />
+                        <div className={classes.container}>
+                            <Switch>
+                                <Route exact path = '/' component={MyMap}/>
+                                <Route exact path = '/map' component={MyMap}/>
+                                <Route exact path = '/feed' component={MyFeed}/>
+                                <Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>
+                            </Switch>
+                        </div>
+                    </main>
+                </div>
+            </React.Fragment>
         );
     }
 }
