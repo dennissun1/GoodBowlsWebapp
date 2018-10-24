@@ -3,18 +3,3 @@ div {
   padding: 0;
   font-family: sans-serif;
 }
-.leaflet-container {
-  height: 80vh;
-  width: 100%;
-  margin-top: 5vh;
-}
-.bg-light {
-  background-color: #1dbe2b !important;
-}
-.navbar-brand{
-  color: whitesmoke !important;
-}
-.navbar-text {
-  color: whitesmoke !important;
-  font-size: 3vw;
-}
