@@ -2,6 +2,7 @@ import React from 'react';
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import './MyMap.css'
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -11,7 +12,10 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-class My_Map extends React.Component {
+class MyMap extends React.Component {
+    componentDidMount(){
+        this.forceUpdate();
+    }
     render() {
         const position = [35.996435, -78.916603];
         const farmIcon = new L.Icon({
@@ -20,32 +24,33 @@ class My_Map extends React.Component {
         });
         return(
             <div>
-                <Map center = {position} zoom = {8}>
+                <Map center = {position} zoom = {9}>
                     <TileLayer
                         attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
                         url="https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}"
                         maxZoom={18}
                         id='mapbox.streets'
                         accessToken='pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA'
+                        ref='map'
                     />
                     <Marker position={position} zoom>
                         <Popup>
-                            <b>Durham Co-op Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.9111483,-79.0713636076655]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.8801334,-79.0660226]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[36.07355195,-79.09970025]} zoom>
                         <Popup>
-                            <b>Weaver Street Market</b><br/><a href="#">Directions</a><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
+                            <b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits
                         </Popup>
                     </Marker>
                     <Marker position={[35.3016102,-78.2229939]} icon={farmIcon} zoom>
@@ -60,7 +65,7 @@ class My_Map extends React.Component {
                     </Marker>
                     <Marker position={[36.348511,-78.267849]} icon={farmIcon} zoom>
                         <Popup>
-                            <b>Bender Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes
+                            <b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes
                         </Popup>
                     </Marker>
                 </Map>
@@ -69,4 +74,4 @@ class My_Map extends React.Component {
     }
 }
 
-export default My_Map;
+export default MyMap;
