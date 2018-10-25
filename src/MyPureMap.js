@@ -3,6 +3,9 @@ import L from 'leaflet';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet/dist/leaflet.css';
+import 'font-awesome/css/font-awesome.min.css';
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
+import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -29,12 +32,18 @@ class MyPureMap extends React.Component {
     }
     componentDidMount() {
         if (!this.state.map) {
-            this.state.map = L.map('map').setView([35.8, -78.5], 9);
+            this.state.map = L.map('map').setView([35.8, -78.5], 8);
             L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                 attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
                 maxZoom: 18,
                 id: 'mapbox.streets',
                 accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA'
+            }).addTo(this.state.map);
+            L.control.locate({
+                locateOptions: {
+                    maxZoom: 15,
+                    enableHighAccuracy: true,
+                }
             }).addTo(this.state.map);
             this.updateMarkers([35.996435, -78.916603], "<b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits", "store");
             this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
@@ -49,6 +58,7 @@ class MyPureMap extends React.Component {
     componentWillUnmount() {
         this.state.map.remove();
         this.setState({map : null});
+        global.farmIcon = null;
     }
     componentDidUpdate(prevProps, prevState) {
 
