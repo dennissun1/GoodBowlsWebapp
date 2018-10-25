@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import MyFeed from "./MyFeed";
 import MyMakeOwnBowls from "./MyMakeOwnBowls";
 import {Switch, Route, NavLink} from 'react-router-dom';
-import MyMap from './MyMap';
+import MyPureMap from './MyPureMap';
 
 const styles = theme => ({
     root: {
@@ -165,8 +165,8 @@ class MyMain extends React.Component {
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
-                                <Route exact path = '/' component={MyMap}/>
-                                <Route exact path = '/map' component={MyMap}/>
+                                <Route exact path = '/' component={MyPureMap}/>
+                                <Route exact path = '/map' component={MyPureMap}/>
                                 <Route exact path = '/feed' component={MyFeed}/>
                                 <Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>
                             </Switch>
