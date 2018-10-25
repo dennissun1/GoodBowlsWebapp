@@ -59,6 +59,7 @@ const styles = theme => ({
     },
     drawerHeaderText: {
         justifyContent: 'flex-start',
+        fontSize: `2vw`,
     },
     content: {
         flexGrow: 1,
@@ -87,6 +88,9 @@ const styles = theme => ({
         paddingRight: `1vw`,
     },
     appBarSpacer: theme.mixins.toolbar,
+    container: {
+        position: 'relative',
+    },
 });
 
 class MyMain extends React.Component {
@@ -152,11 +156,7 @@ class MyMain extends React.Component {
                             </IconButton>
                         </div>
                         <List>
-                            <NavLink to='/' className={classes.navlink}>
-                                <ListItem button>
-                                    Map
-                                </ListItem>
-                            </NavLink>
+                            <NavLink to='/' className={classes.navlink}><ListItem button>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
                             <NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>
                         </List>
