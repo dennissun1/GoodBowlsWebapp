@@ -5,8 +5,11 @@ class MyMakeOwnBowls extends React.Component {
     render() {
         return(
 
-<h2>Tabs</h2>
-<p>Click on the buttons inside the tabbed menu:</p>
+            <div>
+                <h2>Tabs</h2>
+                <p>Click on the buttons inside the tabbed menu:</p>
+            </div>
+
 
 <div class="tab">
   <button class="tablinks" onclick="openCity(event, 'London')">Chicken Burrito Style Bowl</button>
