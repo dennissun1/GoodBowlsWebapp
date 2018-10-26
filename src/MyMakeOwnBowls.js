@@ -3,49 +3,67 @@ import './Recipes.css';
 
 class MyMakeOwnBowls extends React.Component {
     
-     
-function openCity(evt, cityName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-    document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+window.addEventListener("load", function() {
+	// store tabs variable
+	var myTabs = document.querySelectorAll("ul.nav-tabs > li");
+    
+  function myTabClicks(tabClickEvent) {
+		for (var i = 0; i < myTabs.length; i++) {
+			myTabs[i].classList.remove("active");
+		}
+		var clickedTab = tabClickEvent.currentTarget;
+		clickedTab.classList.add("active");
+		tabClickEvent.preventDefault();
+		var myContentPanes = document.querySelectorAll(".tab-pane");
+		for (i = 0; i < myContentPanes.length; i++) {
+			myContentPanes[i].classList.remove("active");
+		}
+		var anchorReference = tabClickEvent.target;
+		var activePaneId = anchorReference.getAttribute("href");
+		var activePane = document.querySelector(activePaneId);
+		activePane.classList.add("active");
+	}
+    
+	for (i = 0; i < myTabs.length; i++) {
+		myTabs[i].addEventListener("click", myTabClicks)
+	}
+    
+});
 
      render() {   
         return(  
-            
-            <div>
-            <h2>Tabs</h2>
-<p>Click on the buttons inside the tabbed menu:</p>
-            </div>
-
-<div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
-</div>
-
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p> 
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>            
+            <div class="container--tabs">
+	<section class="row">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#tab-1">Tab 1</a></li>
+			<li class=""><a href="#tab-2">Tab 2</a></li>
+			<li class=""><a href="#tab-3">Tab 3</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="tab-1" class="tab-pane active"> 
+				<span class="glyphicon glyphicon-leaf glyphicon--home--feature two columns text-center"></span>
+				<span class="col-md-10">
+					<h3>Feature 1</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</span>
+			</div> 
+			<div id="tab-2" class="tab-pane">
+				<span class="glyphicon glyphicon-fire glyphicon--home--feature two columns text-center"></span>
+				<span class="col-md-10">
+					<h3>Feature 2</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</span>
+			</div>
+			<div id="tab-3" class="tab-pane">
+				<span class="glyphicon glyphicon-tint glyphicon--home--feature two columns text-center"></span>
+				<span class="col-md-10">
+					<h3>Feature 3</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</span>
+			</div>
+		</div>
+	</section>
+</div>          
             
             <div className = "recipes">
                 <h1>Make Your Own Good Bowls</h1>
