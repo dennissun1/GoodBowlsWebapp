@@ -2,69 +2,30 @@ import React from "react";
 import './Recipes.css';
 
 class MyMakeOwnBowls extends React.Component {
-    
-window.addEventListener("load", function() {
-	// store tabs variable
-	var myTabs = document.querySelectorAll("ul.nav-tabs > li");
-    
-  function myTabClicks(tabClickEvent) {
-		for (var i = 0; i < myTabs.length; i++) {
-			myTabs[i].classList.remove("active");
-		}
-		var clickedTab = tabClickEvent.currentTarget;
-		clickedTab.classList.add("active");
-		tabClickEvent.preventDefault();
-		var myContentPanes = document.querySelectorAll(".tab-pane");
-		for (i = 0; i < myContentPanes.length; i++) {
-			myContentPanes[i].classList.remove("active");
-		}
-		var anchorReference = tabClickEvent.target;
-		var activePaneId = anchorReference.getAttribute("href");
-		var activePane = document.querySelector(activePaneId);
-		activePane.classList.add("active");
-	}
-    
-	for (i = 0; i < myTabs.length; i++) {
-		myTabs[i].addEventListener("click", myTabClicks)
-	}
-    
-});
+  
+openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 
      render() {   
-        return(  
-            <div class="container--tabs">
-	<section class="row">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#tab-1">Tab 1</a></li>
-			<li class=""><a href="#tab-2">Tab 2</a></li>
-			<li class=""><a href="#tab-3">Tab 3</a></li>
-		</ul>
-		<div class="tab-content">
-			<div id="tab-1" class="tab-pane active"> 
-				<span class="glyphicon glyphicon-leaf glyphicon--home--feature two columns text-center"></span>
-				<span class="col-md-10">
-					<h3>Feature 1</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				</span>
-			</div> 
-			<div id="tab-2" class="tab-pane">
-				<span class="glyphicon glyphicon-fire glyphicon--home--feature two columns text-center"></span>
-				<span class="col-md-10">
-					<h3>Feature 2</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				</span>
-			</div>
-			<div id="tab-3" class="tab-pane">
-				<span class="glyphicon glyphicon-tint glyphicon--home--feature two columns text-center"></span>
-				<span class="col-md-10">
-					<h3>Feature 3</h3>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-				</span>
-			</div>
-		</div>
-	</section>
-</div>          
-            
+             return (       
             <div className = "recipes">
                 <h1>Make Your Own Good Bowls</h1>
                 <p>Learn 3 easy Good Bowl recipes for you to cook at home! The Good Bowls recipes are based on the Mediterranean diet adapted for southeastern US tastes, emphasizing NC produce like sweet potatoes, peppers, and greens.</p>
