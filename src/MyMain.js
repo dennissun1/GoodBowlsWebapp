@@ -11,9 +11,13 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
+import Collapse from '@material-ui/core/Collapse';
 import MyFeed from "./MyFeed";
-import MyMakeOwnBowls from "./MyMakeOwnBowls";
+import Bowl1 from "./Bowl1";
+import Bowl2 from "./Bowl2";
+import Bowl3 from "./Bowl3";
 import {Switch, Route, NavLink} from 'react-router-dom';
 import MyPureMap from './MyPureMap';
 
@@ -91,11 +95,17 @@ const styles = theme => ({
     container: {
         position: 'relative',
     },
+    nested: {
+    },
 });
 
 class MyMain extends React.Component {
     state = {
         open: false,
+        tabOpen: false,
+    };
+    handleClick = () => {
+        this.setState(state => ({ tabOpen: !state.tabOpen }));
     };
 
     handleDrawerOpen = () => {
@@ -158,7 +168,27 @@ class MyMain extends React.Component {
                         <List>
                             <NavLink to='/' className={classes.navlink}><ListItem button>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
-                            <NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>
+                            {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
+                            <ListItem button onClick={this.handleClick}>Recipes</ListItem>
+                            <Collapse in={this.state.tabOpen} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    <NavLink to='/bowl1' className={classes.navlink}>
+                                        <ListItem button className={classes.nested}>
+                                            <ListItemText inset primary="Bowl 1" />
+                                        </ListItem>
+                                    </NavLink>
+                                    <NavLink to='/bowl2' className={classes.navlink}>
+                                        <ListItem button className={classes.nested}>
+                                            <ListItemText inset primary="Bowl 2" />
+                                        </ListItem>
+                                    </NavLink>
+                                    <NavLink to='/bowl3' className={classes.navlink}>
+                                        <ListItem button className={classes.nested}>
+                                            <ListItemText inset primary="Bowl 3" />
+                                        </ListItem>
+                                    </NavLink>
+                                </List>
+                            </Collapse>
                         </List>
                     </Drawer>
                     <main className={classNames(classes.content, {[classes.contentShift]: open,})}>
@@ -168,7 +198,10 @@ class MyMain extends React.Component {
                                 <Route exact path = '/' component={MyPureMap}/>
                                 <Route exact path = '/map' component={MyPureMap}/>
                                 <Route exact path = '/feed' component={MyFeed}/>
-                                <Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>
+                                <Route exact path = '/bowl1' component={Bowl1}/>
+                                <Route exact path = '/bowl2' component={Bowl2}/>
+                                <Route exact path = '/bowl3' component={Bowl3}/>
+                                {/*<Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>*/}
                             </Switch>
                         </div>
                     </main>
