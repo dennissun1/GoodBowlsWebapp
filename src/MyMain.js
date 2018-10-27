@@ -174,17 +174,17 @@ class MyMain extends React.Component {
                                 <List component="div" disablePadding>
                                     <NavLink to='/bowl1' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Bowl 1" />
+                                            <ListItemText inset primary="Chicken Burrito Style Bowl" />
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl2' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Bowl 2" />
+                                            <ListItemText inset primary="Vegetables & Chicken over Rice with Coconut Curry Sauce" />
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl3' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Bowl 3" />
+                                            <ListItemText inset primary="Sausage & Peppers Bowl with Cheese Grits" />
                                         </ListItem>
                                     </NavLink>
                                 </List>
