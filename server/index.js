@@ -6,6 +6,8 @@ require('babel-register')({
 
 require('./server');
 
+console.log("test");
+
 //db code
 const { Client } = require('pg');
 
