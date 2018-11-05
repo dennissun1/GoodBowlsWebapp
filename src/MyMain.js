@@ -20,6 +20,7 @@ import Bowl2 from "./Bowl2";
 import Bowl3 from "./Bowl3";
 import {Switch, Route, NavLink} from 'react-router-dom';
 import MyPureMap from './MyPureMap';
+import MyHome from './MyHome';
 
 const styles = theme => ({
     root: {
@@ -174,17 +175,17 @@ class MyMain extends React.Component {
                                 <List component="div" disablePadding>
                                     <NavLink to='/bowl1' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Chicken Burrito Style Bowl" />
+                                            <ListItemText inset primary="Chicken Burrito" />
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl2' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Vegetables & Chicken over Rice with Coconut Curry Sauce" />
+                                            <ListItemText inset primary="Chicken Curry" />
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl3' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Sausage & Peppers Bowl with Cheese Grits" />
+                                            <ListItemText inset primary="Sausage & Peppers Bowl" />
                                         </ListItem>
                                     </NavLink>
                                 </List>
@@ -195,7 +196,7 @@ class MyMain extends React.Component {
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
-                                <Route exact path = '/' component={MyPureMap}/>
+                                <Route exact path = '/' component={MyHome}/>
                                 <Route exact path = '/map' component={MyPureMap}/>
                                 <Route exact path = '/feed' component={MyFeed}/>
                                 <Route exact path = '/bowl1' component={Bowl1}/>
