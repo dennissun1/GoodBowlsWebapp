@@ -10,6 +10,8 @@ import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
 
+var sqlite = require('react-native-sqlite');
+
 L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
