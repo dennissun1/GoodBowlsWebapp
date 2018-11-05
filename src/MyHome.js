@@ -5,7 +5,7 @@ class My_Feed extends React.Component {
         return(
             <div>
                 <h1>Welcome to the Good Bowls Web App!</h1>
-                <img src="Home.jpg" alt="Good Bowls Home">
+                //<img src="Home.jpg" alt="Good Bowls Home">
                 
                  <a href="https://goodbowlstest.herokuapp.com/map">MAPS</a> 
                     <p>Learn about where you can purchase Good Bowls and where we source our ingredients.</p>
