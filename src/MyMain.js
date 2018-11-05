@@ -105,8 +105,13 @@ class MyMain extends React.Component {
         open: false,
         tabOpen: false,
     };
+
     handleClick = () => {
         this.setState(state => ({ tabOpen: !state.tabOpen }));
+    };
+
+    handleClose = () => {
+        this.setState(() => ({tabOpen: false}));
     };
 
     handleDrawerOpen = () => {
@@ -148,7 +153,7 @@ class MyMain extends React.Component {
                                 noWrap
                                 className={classes.title}
                             >
-                                Good Bowls
+                                <NavLink to ='/' activeStyle={{color: "whitesmoke"}}>Good Bowls</NavLink>
                             </Typography>
                         </Toolbar>
                     </AppBar>
@@ -167,25 +172,25 @@ class MyMain extends React.Component {
                             </IconButton>
                         </div>
                         <List>
-                            <NavLink to='/map' className={classes.navlink}><ListItem button>Map</ListItem></NavLink>
-                            <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
+                            <NavLink to='/map' className={classes.navlink}><ListItem button onClick={this.handleClose}>Map</ListItem></NavLink>
+                            <NavLink to='/feed' className={classes.navlink}><ListItem button onClick={this.handleClose}>Feed</ListItem></NavLink>
                             {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
                             <ListItem button onClick={this.handleClick}>Recipes</ListItem>
-                            <Collapse in={this.state.tabOpen} timeout="auto" unmountOnExit>
+                            <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
                                     <NavLink to='/bowl1' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Chicken Burrito" />
+                                            <ListItemText primary="Chicken Burrito"/>
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl2' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Chicken Curry" />
+                                            <ListItemText primary="Chicken Curry"/>
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl3' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            <ListItemText inset primary="Sausage & Peppers Bowl" />
+                                            <ListItemText primary="Sausage & Peppers Bowl"/>
                                         </ListItem>
                                     </NavLink>
                                 </List>
