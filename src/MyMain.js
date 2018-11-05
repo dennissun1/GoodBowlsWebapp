@@ -167,7 +167,7 @@ class MyMain extends React.Component {
                             </IconButton>
                         </div>
                         <List>
-                            <NavLink to='/' className={classes.navlink}><ListItem button>Map</ListItem></NavLink>
+                            <NavLink to='/map' className={classes.navlink}><ListItem button>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button>Feed</ListItem></NavLink>
                             {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
                             <ListItem button onClick={this.handleClick}>Recipes</ListItem>
