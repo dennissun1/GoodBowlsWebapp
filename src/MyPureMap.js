@@ -16,8 +16,6 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
-const { Client } = require('pg');
-
 class MyPureMap extends React.Component {
     constructor(props) {
         global.farmIcon = new L.Icon({
