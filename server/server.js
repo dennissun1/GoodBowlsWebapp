@@ -12,6 +12,8 @@ const port = process.env.PORT || 8080;
 
 app.use(express.static('../build'));
 
+
+
 app.get("/", function(req, res){
     const context = {};
     const app = ReactDOMServer.renderToString(
@@ -33,4 +35,25 @@ app.get("/", function(req, res){
         
 app.listen(port, function () {
     console.log("app running");
+});
+
+
+//db code
+console.log("test");
+
+const { Client } = require('pg');
+
+const client = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
+});
+
+client.connect();
+
+client.query('SELECT * FROM map;', (err, res) => {
+  if (err) throw err;
+  for (let row of res.rows) {
+    console.log(JSON.stringify(row));
+  }
+  client.end();
 });
