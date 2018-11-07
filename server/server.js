@@ -19,13 +19,16 @@ app.listen(port, function () {
 
 
 //db code
-
 const { Client } = require('pg');
 
 const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    SSL: true
-});
+    user: 'mspkzoomifopri',
+    host: 'ec2-23-23-153-145.compute-1.amazonaws.com',
+    database: 'dtbm7brrdl65',
+    password: 'a242718e221e1b5ce5e1f18f924cb31997e017d3a852a5f433cc67b8fa66da7c',
+    port: 5432,
+    ssl: true
+},);
 
 client.connect();
 
