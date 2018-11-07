@@ -6,7 +6,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter} from 'react-router-dom';
 
-ReactDOM.hydrate(
+ReactDOM.render(
     <BrowserRouter>
         <App />
     </BrowserRouter>

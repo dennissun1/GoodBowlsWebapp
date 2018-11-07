@@ -16,4 +16,5 @@ class MyHome extends React.Component {
         );
     }
 }
+
 export default MyHome;

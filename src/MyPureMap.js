@@ -6,6 +6,8 @@ import 'leaflet/dist/leaflet.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
+import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
+import 'leaflet-control-geocoder/dist/Control.Geocoder';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -53,7 +55,7 @@ class MyPureMap extends React.Component {
             this.updateMarkers([35.3016102,-78.2229939], "<b>Wise Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
             this.updateMarkers([35.4574095,-77.6873196,-78.2229939],"<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
             this.updateMarkers([36.348511,-78.267849],"<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
-            // this.updateRoutes([35.996435, -78.916603], [35.4574095,-77.6873196,-78.2229939]);
+            this.updateRoutes([35.996435, -78.916603], [35.4574095,-77.6873196,-78.2229939]);
         }
     }
     componentWillUnmount() {
@@ -74,11 +76,12 @@ class MyPureMap extends React.Component {
     }
     updateRoutes(from, to) {
         L.Routing.control({
-           waypoints: [
-               from,
-               to
-           ],
-           routeWhileDragging: true
+            waypoints: [
+                from,
+                to
+            ],
+            routeWhileDragging: false,
+            geocoder: L.Control.Geocoder.nominatim()
         }).addTo(this.state.map);
     }
     render() {
