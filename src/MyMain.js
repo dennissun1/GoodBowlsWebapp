@@ -204,6 +204,7 @@ class MyMain extends React.Component {
                                 <Route exact path = '/' component={MyHome}/>
                                 <Route exact path = '/map' component={MyPureMap}/>
                                 <Route exact path = '/feed' component={MyFeed}/>
+                                <Route exact path = '/recipes' component={MyMakeOwnBowls}/>
                                 <Route exact path = '/bowl1' component={Bowl1}/>
                                 <Route exact path = '/bowl2' component={Bowl2}/>
                                 <Route exact path = '/bowl3' component={Bowl3}/>
