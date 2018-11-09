@@ -21,6 +21,7 @@ import Bowl3 from "./Bowl3";
 import {Switch, Route, NavLink} from 'react-router-dom';
 import MyPureMap from './MyPureMap';
 import MyHome from './MyHome';
+import MyMakeOwnBowls from './MyMakeOwnBowls'
 
 const styles = theme => ({
     root: {
