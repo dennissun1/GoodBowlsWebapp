@@ -8,6 +8,7 @@ import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder';
+import 'default-passive-events/dist/index';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -24,9 +25,12 @@ class MyPureMap extends React.Component {
             iconUrl: require('./farm-marker.png'),
             shadowUrl: require('./marker-shadow.png')
         });
-        global.farms = L.layerGroup();
-        global.stores = L.layerGroup();
+        global.farms = L.featureGroup();
+        global.stores = L.featureGroup();
         global.map = null;
+        global.self_lat = null;
+        global.self_lng = null;
+        global.route = null;
         super(props);
         this.state = {
             updateFlag: false,
@@ -58,9 +62,27 @@ class MyPureMap extends React.Component {
             this.updateMarkers([35.3016102,-78.2229939], "<b>Wise Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
             this.updateMarkers([35.4574095,-77.6873196,-78.2229939],"<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
             this.updateMarkers([36.348511,-78.267849],"<b>Jones Farms</b><br /><br />Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
-            //this.updateRoutes([35.996435, -78.916603], [35.4574095,-77.6873196,-78.2229939]);
             global.map.addLayer(global.farms);
             global.map.addLayer(global.stores);
+            global.stores
+                .on('click', (ev) => {
+                    let coord = ev.latlng.toString().split(',');
+                    let lat = coord[0].split('(')[1];
+                    let lng = coord[1].split(')')[0];
+                    if ((global.self_lat) && (global.self_lng)) {
+                        if (global.route)
+                            global.map.removeControl(global.route);
+                        this.updateRoutes([global.self_lat, global.self_lng], [lat, lng]);
+                    }
+                })
+                .on('popupclose', ()=>{
+                    if (global.route) {
+                        // global.route.spliceWaypoints(0, 2);
+                        global.map.removeControl(global.route);
+                        global.route = null;
+                    }
+                    //console.log("close");
+                });
             let Empty = {
 
             };
@@ -70,12 +92,17 @@ class MyPureMap extends React.Component {
             };
             L.control.layers(Empty, Overlap, {collapsed: false}).addTo(global.map);
             L.control.locate({
-                keepCurrentZoomLevel: true,
+                keepCurrentZoomLevel: false,
                 locateOptions: {
                     maxZoom: 15,
                     enableHighAccuracy: true,
                 }
             }).addTo(global.map);
+            global.map.on('locationfound', (e)=>{
+                let coord = e.latlng.toString().split(',');
+                global.self_lat = coord[0].split('(')[1];
+                global.self_lng = coord[1].split(')')[0];
+            }, {passive: true});
         }
     }
     componentWillUnmount() {
@@ -95,14 +122,15 @@ class MyPureMap extends React.Component {
         }
     }
     updateRoutes(from, to) {
-        L.Routing.control({
+        global.route = L.Routing.control({
             waypoints: [
                 from,
                 to
             ],
             routeWhileDragging: false,
             geocoder: L.Control.Geocoder.nominatim()
-        }).addTo(global.map);
+        });
+        global.route.addTo(global.map);
     }
     render() {
         return (
