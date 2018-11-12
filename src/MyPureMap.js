@@ -70,8 +70,10 @@ class MyPureMap extends React.Component {
                     let lat = coord[0].split('(')[1];
                     let lng = coord[1].split(')')[0];
                     if ((global.self_lat) && (global.self_lng)) {
-                        if (global.route)
+                        if (global.route) {
                             global.map.removeControl(global.route);
+                            global.route = null;
+                        }
                         this.updateRoutes([global.self_lat, global.self_lng], [lat, lng]);
                     }
                 })
