@@ -176,7 +176,7 @@ class MyMain extends React.Component {
                             <NavLink to='/map' className={classes.navlink}><ListItem button onClick={this.handleClose}>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button onClick={this.handleClose}>Feed</ListItem></NavLink>
                             {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
-                            <ListItem button onClick={this.handleClick}>Recipes</ListItem>
+                            <NavLink to='/recipes' className={classes.navlink}><ListItem button onClick={this.handleClick}>Recipes</ListItem></NavLink>
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
                                     <NavLink to='/bowl1' className={classes.navlink}>
