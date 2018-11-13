@@ -21,6 +21,7 @@ L.Icon.Default.mergeOptions({
 
 class MyPureMap extends React.Component {
     constructor(props) {
+        super(props);
         global.farmIcon = new L.Icon({
             iconUrl: require('./farm-marker.png'),
             shadowUrl: require('./marker-shadow.png')
@@ -49,12 +50,6 @@ class MyPureMap extends React.Component {
                     zoomOffset: -1,
                     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(global.map);
-            // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
-            //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            //     maxZoom: 18,
-            //     id: 'mapbox.streets',
-            //     accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA'
-            // }).addTo(this.state.map);
             this.updateMarkers([35.996435, -78.916603], "<b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits", "store");
             this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
             this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
@@ -70,24 +65,17 @@ class MyPureMap extends React.Component {
                     let lat = coord[0].split('(')[1];
                     let lng = coord[1].split(')')[0];
                     if ((global.self_lat) && (global.self_lng)) {
-                        if (global.route) {
-                            global.map.removeControl(global.route);
-                            global.route = null;
-                        }
                         this.updateRoutes([global.self_lat, global.self_lng], [lat, lng]);
                     }
-                })
-                .on('popupclose', ()=>{
-                    if (global.route) {
-                        // global.route.spliceWaypoints(0, 2);
-                        global.map.removeControl(global.route);
-                        global.route = null;
-                    }
-                    //console.log("close");
                 });
-            let Empty = {
-
-            };
+                // .on('popupclose', ()=>{
+                //     if (global.route) {
+                //         // global.route.spliceWaypoints(0, 2);
+                //         global.map.removeControl(global.route);
+                //         global.route = null;
+                //     }
+                // });
+            let Empty = {};
             let Overlap = {
                 "Farm": global.farms,
                 "Stores": global.stores
@@ -105,6 +93,12 @@ class MyPureMap extends React.Component {
                 global.self_lat = coord[0].split('(')[1];
                 global.self_lng = coord[1].split(')')[0];
             }, {passive: true});
+            global.route = L.Routing.control({
+                routeWhileDragging: true,
+                geocoder: L.Control.Geocoder.nominatim(),
+                router: L.Routing.mapbox("pk.eyJ1IjoicWlhb2ZlbmdtYXJjbyIsImEiOiJjam85aWludHAwNWd2M3FtazBnMWJka2tjIn0.z7xc-bNrxVuieK6h71x7tg")
+            });
+            global.route.addTo(global.map);
         }
     }
     componentWillUnmount() {
@@ -124,15 +118,9 @@ class MyPureMap extends React.Component {
         }
     }
     updateRoutes(from, to) {
-        global.route = L.Routing.control({
-            waypoints: [
-                from,
-                to
-            ],
-            routeWhileDragging: false,
-            geocoder: L.Control.Geocoder.nominatim()
-        });
-        global.route.addTo(global.map);
+        if (global.route) {
+            global.route.setWaypoints([from, to]);
+        }
     }
     render() {
         return (
