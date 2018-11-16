@@ -1,5 +1,7 @@
 import React from 'react';
 import L from 'leaflet';
+import axios from 'axios';
+
 import 'leaflet-routing-machine/dist/leaflet-routing-machine';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet/dist/leaflet.css';
@@ -17,6 +19,14 @@ L.Icon.Default.mergeOptions({
     iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
     iconUrl: require('leaflet/dist/images/marker-icon.png'),
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
+axios.get('http://localhost:5000/api')
+    .then(function (response) {
+    var res = JSON.stringify(response.data);
+    alert(JSON.parse(res).address);
+})
+    .catch(function (error) {
+    alert(error);
 });
 
 class MyPureMap extends React.Component {
@@ -43,6 +53,7 @@ class MyPureMap extends React.Component {
         if (!global.map) {
             global.map = L.map('map').setView([35.8, -78.5], 8);
             L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+<<<<<<< HEAD
                     accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA',
                     maxZoom: 18,
                     id: 'mapbox.streets',
@@ -50,6 +61,21 @@ class MyPureMap extends React.Component {
                     zoomOffset: -1,
                     attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(global.map);
+=======
+                accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA',
+                maxZoom: 18,
+                id: 'mapbox.streets',
+                tileSize: 512,
+                zoomOffset: -1,
+                attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(global.map);
+            // L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+            //     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            //     maxZoom: 18,
+            //     id: 'mapbox.streets',
+            //     accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA'
+            // }).addTo(this.state.map);
+>>>>>>> cd86c9c7c22f4fb966b485313350650ca555f03f
             this.updateMarkers([35.996435, -78.916603], "<b>Durham Co-op Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits", "store");
             this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
             this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b><br /><br />Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
