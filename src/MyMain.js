@@ -175,7 +175,6 @@ class MyMain extends React.Component {
                         <List>
                             <NavLink to='/map' className={classes.navlink}><ListItem button onClick={this.handleClose}>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button onClick={this.handleClose}>Feed</ListItem></NavLink>
-                            {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
                             <NavLink to='/recipes' className={classes.navlink}><ListItem button onClick={this.handleClick}>Recipes</ListItem></NavLink>
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
@@ -209,7 +208,6 @@ class MyMain extends React.Component {
                                 <Route exact path = '/bowl1' component={Bowl1}/>
                                 <Route exact path = '/bowl2' component={Bowl2}/>
                                 <Route exact path = '/bowl3' component={Bowl3}/>
-                                {/*<Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>*/}
                             </Switch>
                         </div>
                     </main>
