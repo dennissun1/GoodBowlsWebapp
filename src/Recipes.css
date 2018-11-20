@@ -1,16 +1,18 @@
 .recipes {
+    padding-top: 15px;
     padding-right: 30px;
     padding-left: 30px;
     font-family: Verdana, Geneva, sans-serif;
 }
 
-.h2 {
+h2 {
     text-align: center;
     padding: 10px 10px;
 }
 
-.h3 {
+h3 {
     color: tomato;
+    padding-top: 15px;
 }
 
 .video-container {
