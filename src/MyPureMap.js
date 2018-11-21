@@ -9,7 +9,7 @@ import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder';
 import 'default-passive-events/dist/index';
-import axios from 'axios';
+//import axios from 'axios';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -82,7 +82,7 @@ class MyPureMap extends React.Component {
                             this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                         }
                         else {
-                            alert("Please enable the locate services before using navigation!");
+                            alert("Please enable the locate service before using navigation!");
                         }
                     }
                 );
@@ -99,7 +99,7 @@ class MyPureMap extends React.Component {
                             this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                         }
                         else {
-                            alert("Please enable the locate services before using navigation!");
+                            alert("Please enable the locate service before using navigation!");
                         }
                     }
                 );
@@ -124,7 +124,10 @@ class MyPureMap extends React.Component {
                 this.self_lng = coord[1].split(')')[0];
             });
             this.route = L.Routing.control({
+                position: "topleft",
                 routeWhileDragging: true,
+                collapsible: true,
+                show: false,
                 geocoder: L.Control.Geocoder.nominatim(),
                 lineOptions: {
                     styles: [{color: '#4B9CD3', opacity: 0.7, weight: 7}]
@@ -154,6 +157,7 @@ class MyPureMap extends React.Component {
     updateRoutes(from, to) {
         if (this.route) {
             this.route.setWaypoints([from, to]);
+            this.route.show();
         }
     }
     render() {
