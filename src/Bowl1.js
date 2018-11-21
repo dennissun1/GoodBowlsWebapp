@@ -4,12 +4,12 @@ import './Recipes.css';
 class Bowl1 extends React.Component {
     render() {
         return(
-            <div className = "recipes">
-                <h2>Chicken Burrito Style Bowl</h2>
+            <div className="recipes">
+                <h2 className="bowl-title">Chicken Burrito Style Bowl</h2>
                 <div className="video-container">
                     <iframe title="video1" src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameBorder="0" allow="autoplay; encrypted-media" />
                 </div>
-                <h3>Ingredients</h3>
+                <h3 className="sub-title">Ingredients</h3>
                 <p> 1 head cauliflower<br />
                     1 chicken breast, diced<br />
                     1 cup  peas<br />
@@ -20,7 +20,7 @@ class Bowl1 extends React.Component {
                     2 tablespoons  sesame seed
                 </p>
 
-                <h3>Preparation</h3>
+                <h3 className="sub-title">Preparation</h3>
                 <ol>
                   <li>Remove all leaves and cut the cauliflower into small florets. Place the florets in a food processor and blend until they are a rice-like texture. Be careful not to over process or it may turn mushy. Set aside, and drain excess moisture with a towel, if desired.</li>
                   <li>In a large saucepan over medium-high heat, cook the chicken until no pink is showing.</li>

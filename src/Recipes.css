@@ -5,12 +5,12 @@
     font-family: Verdana, Geneva, sans-serif;
 }
 
-h2 {
+.bowl-title {
     text-align: center;
     padding: 10px 10px;
 }
 
-h3 {
+.sub-title {
     color: tomato;
     padding-top: 15px;
 }
