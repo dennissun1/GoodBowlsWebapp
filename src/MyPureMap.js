@@ -9,7 +9,7 @@ import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder';
 import 'default-passive-events/dist/index';
-import axios from 'axios';
+//import axios from 'axios';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -53,6 +53,10 @@ class MyPureMap extends React.Component {
             if(http.readyState==4){
                 if (http.status === 200){
                     var res = JSON.parse(http.response)
+                    for (let row of res){
+                        //only works for farms, add if statement for stores
+                        this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address+"<br/><br/><b>Ingredients</b><br/>"+row.ingredients,row.type);
+                    }
                     if (!this.map) {
                         this.map = L.map('map').setView([35.8, -78.5], 8);
                         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -67,9 +71,9 @@ class MyPureMap extends React.Component {
                         this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
                         this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
                         this.updateMarkers([36.07355195,-79.09970025],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        this.updateMarkers([res.latitude,res.longitude], "<b>"+res.name+"</b>", res.address+"<br/><br/><b>Ingredients</b><br/>"+res.ingredients,res.type);
+                        
                         this.updateMarkers([35.4574095,-77.6873196,-78.2229939],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
-                        this.updateMarkers([36.348511,-78.267849],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
+//                        this.updateMarkers([36.348511,-78.267849],"<b>Bender Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
                         this.map.addLayer(this.farms);
                         this.map.addLayer(this.stores);
                         this.stores.on('click', (ev)=>{

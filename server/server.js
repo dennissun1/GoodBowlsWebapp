@@ -42,14 +42,16 @@ const client = new Client({
 
 client.query('SELECT * FROM map;', (err, res) => {
     if (err) throw err;
+    var rowNum=0;
+    var output = [];
     for (let row of res.rows) {
-        var output = JSON.parse(JSON.stringify(row));
-        console.log(output);
-        //accessed at GET http://localhost:port/api), where port==5000 usually
-        router.get('/', function(req, res) {
-            res.json({ address: output.address, name:output.name, type:output.type, ingredients:output.ingredients, latitude:output.latitude, longitude:output.longitude });   
-        });
-        app.use('/api', router);
+        var temp = JSON.parse(JSON.stringify(row));
+        output.push(temp)
     }
+    console.log(output)
+    router.get('/', function(req, res) {
+        res.json(output);   
+    });
+    app.use('/api', router);
     client.end();
 });
