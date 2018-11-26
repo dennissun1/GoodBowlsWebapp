@@ -9,10 +9,10 @@ class MyHome extends React.Component {
     render() {
         return(
             <div>
-                <h2>Welcome to the Good Bowls Web App!</h2>
-				<p>Good Bowls are locally sourced, nutritious frozen meals designed to promote health for people, the community, and the planet, while tackling food insecurity, the lack of dependable access to affordable, healthy food. 
+                <h3>Welcome to the Good Bowls Web App!</h3>
+				<h2>Good Bowls are locally sourced, nutritious frozen meals designed to promote health for people, the community, and the planet, while tackling food insecurity, the lack of dependable access to affordable, healthy food. 
 				Good Bowls are for sale at two price points: the higher in premium food stores frequented by higher-income consumers, and the lower in convenience stores, which tend to be frequented by lower-income consumers for daily food needs particularly in “food deserts.”
-				We aim to promote healthy food access for all while also supporting local sustainable agriculture.</p>
+				We aim to promote healthy food access for all while also supporting local sustainable agriculture.</h2>
                 
 				<div class="container">
 					<img src= {MapImg} alt="Maps"/>
