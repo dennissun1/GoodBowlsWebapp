@@ -44,10 +44,10 @@ client.query('SELECT * FROM map;', (err, res) => {
     if (err) throw err;
     for (let row of res.rows) {
         var output = JSON.parse(JSON.stringify(row));
-        console.log(output.address);
+        console.log(output);
         //accessed at GET http://localhost:port/api), where port==5000 usually
         router.get('/', function(req, res) {
-            res.json({ address: output.address });   
+            res.json({ address: output.address, name:output.name, type:output.type, ingredients:output.ingredients, latitude:output.latitude, longitude:output.longitude });   
         });
         app.use('/api', router);
     }
