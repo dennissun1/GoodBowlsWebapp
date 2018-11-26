@@ -67,7 +67,7 @@ class MyPureMap extends React.Component {
                         this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
                         this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
                         this.updateMarkers([36.07355195,-79.09970025],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        this.updateMarkers([res.latitude,res.longitude], "<b>"+res.name+"</b>", res.ingredients,res.type);
+                        this.updateMarkers([res.latitude,res.longitude], "<b>"+res.name+"</b>", res.address+"<br/><br/><b>Ingredients</b><br/>"+res.ingredients,res.type);
                         this.updateMarkers([35.4574095,-77.6873196,-78.2229939],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
                         this.updateMarkers([36.348511,-78.267849],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
                         this.map.addLayer(this.farms);
