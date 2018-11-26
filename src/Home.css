@@ -1,0 +1,50 @@
+h2 {
+    text-align: center;
+    padding: 10px 10px;
+}
+
+p {
+    padding-top: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+.container {
+    padding-top: 15px;
+	position: relative;
+	max-width: 100%;
+	height: auto;
+    text-align: center;
+    color: black;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container .btn {
+	position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+.container .btn:hover {
+    background-color: tomato;
+}
