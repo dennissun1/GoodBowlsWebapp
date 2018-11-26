@@ -1,31 +1,18 @@
 {
-<<<<<<< HEAD
-  "main.css": "/static/css/main.c754fdfd.chunk.css",
-  "main.js": "/static/js/main.5bb01dcd.chunk.js",
-  "main.js.map": "/static/js/main.5bb01dcd.chunk.js.map",
-  "static/css/1.efb15d91.chunk.css": "/static/css/1.efb15d91.chunk.css",
-  "static/js/1.4b7b874b.chunk.js": "/static/js/1.4b7b874b.chunk.js",
-  "static/js/1.4b7b874b.chunk.js.map": "/static/js/1.4b7b874b.chunk.js.map",
+  "main.css": "/static/css/main.e06d68bf.chunk.css",
+  "main.js": "/static/js/main.e0f10acc.chunk.js",
+  "main.js.map": "/static/js/main.e0f10acc.chunk.js.map",
+  "static/css/1.f9e17eb7.chunk.css": "/static/css/1.f9e17eb7.chunk.css",
+  "static/js/1.7b6cffaf.chunk.js": "/static/js/1.7b6cffaf.chunk.js",
+  "static/js/1.7b6cffaf.chunk.js.map": "/static/js/1.7b6cffaf.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/media/Home.jpg": "/static/media/Home.c5aeb296.jpg",
-  "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.af7ae505.woff2",
-  "static/css/main.c754fdfd.chunk.css.map": "/static/css/main.c754fdfd.chunk.css.map",
-  "static/css/1.efb15d91.chunk.css.map": "/static/css/1.efb15d91.chunk.css.map",
+  "static/media/Map.png": "/static/media/Map.80f50388.png",
+  "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.912ec66d.svg",
+  "static/media/cooking.png": "/static/media/cooking.10eb580c.png",
+  "static/css/main.e06d68bf.chunk.css.map": "/static/css/main.e06d68bf.chunk.css.map",
+  "static/css/1.f9e17eb7.chunk.css.map": "/static/css/1.f9e17eb7.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.0880042077b80cf72e885708a83bf93b.js": "/precache-manifest.0880042077b80cf72e885708a83bf93b.js",
+  "precache-manifest.111eb82cbdc41ef1b6b61724ad9d3f4c.js": "/precache-manifest.111eb82cbdc41ef1b6b61724ad9d3f4c.js",
   "service-worker.js": "/service-worker.js"
-=======
-  "main.css": "static/css/main.58720d6f.css",
-  "main.css.map": "static/css/main.58720d6f.css.map",
-  "main.js": "static/js/main.12e8a7a0.js",
-  "main.js.map": "static/js/main.12e8a7a0.js.map",
-  "static\\media\\Map.png": "static/media/Map.80f50388.png",
-  "static\\media\\cooking.png": "static/media/cooking.10eb580c.png",
-  "static\\media\\fontawesome-webfont.eot": "static/media/fontawesome-webfont.674f50d2.eot",
-  "static\\media\\fontawesome-webfont.svg?v=4.7.0": "static/media/fontawesome-webfont.912ec66d.svg",
-  "static\\media\\fontawesome-webfont.ttf?v=4.7.0": "static/media/fontawesome-webfont.b06871f2.ttf",
-  "static\\media\\fontawesome-webfont.woff2?v=4.7.0": "static/media/fontawesome-webfont.af7ae505.woff2",
-  "static\\media\\fontawesome-webfont.woff?v=4.7.0": "static/media/fontawesome-webfont.fee66e71.woff"
->>>>>>> c00a23a174ba4cae676112e1318a6521d1ca9f8d
 }
