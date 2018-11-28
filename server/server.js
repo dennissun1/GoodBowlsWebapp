@@ -38,7 +38,7 @@ const client = new Client({
     ssl: true
 },);
 
-                          client.connect();
+client.connect();
 
 client.query('SELECT * FROM map;', (err, res) => {
     if (err) throw err;
