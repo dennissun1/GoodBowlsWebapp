@@ -48,7 +48,6 @@ client.query('SELECT * FROM map;', (err, res) => {
         var temp = JSON.parse(JSON.stringify(row));
         output.push(temp)
     }
-    console.log(output)
     router.get('/', function(req, res) {
         res.json(output);   
     });
