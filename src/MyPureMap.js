@@ -79,7 +79,7 @@ class MyPureMap extends React.Component {
             router: L.Routing.mapbox("pk.eyJ1IjoicWlhb2ZlbmdtYXJjbyIsImEiOiJjam85aWludHAwNWd2M3FtazBnMWJka2tjIn0.z7xc-bNrxVuieK6h71x7tg")
         });
         this.route.addTo(this.map);
-        let url = "/api";
+        let url = "/mapapi";
         let http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.send();

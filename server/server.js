@@ -52,6 +52,6 @@ client.query('SELECT * FROM map;', (err, res) => {
     router.get('/', function(req, res) {
         res.json(output);   
     });
-    app.use('/api', router);
+    app.use('/mapapi', router);
     client.end();
 });
