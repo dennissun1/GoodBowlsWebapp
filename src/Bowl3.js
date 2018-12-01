@@ -12,13 +12,13 @@ class Bowl3 extends React.Component {
                 </div>
 
                 <h3 className="sub-title">Ingredients</h3>
-                <p> 1 head cauliflower<br />
-                    1 chicken breast, diced<br />
-                    1 cup  peas<br />
-                    1 cup  carrot<br />
-                    2 tablespoons  soy sauce<br />
-                    2 teaspoons  black pepper<br />
-                    3 eggs, beaten<br />
+                <p> 1 head cauliflower<br/>
+                    1 chicken breast, diced<br/>
+                    1 cup  peas<br/>
+                    1 cup  carrot<br/>
+                    2 tablespoons  soy sauce<br/>
+                    2 teaspoons  black pepper<br/>
+                    3 eggs, beaten<br/>
                     2 tablespoons  sesame seed
                 </p>
 
