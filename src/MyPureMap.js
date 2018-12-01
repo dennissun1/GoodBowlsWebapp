@@ -33,6 +33,8 @@ class MyPureMap extends React.Component {
         this.self_lng = null;
         this.route = null;
         this.lcontrol = null;
+        this.count = 0;
+        this.list = new Map();
         this.state = {
             updateFlag: false,
             updateLocation: null,
@@ -90,7 +92,6 @@ class MyPureMap extends React.Component {
                     let res = JSON.parse(http.response);
                     if (this.map) {
                         for (let row of res) {
-                            //only works for farms, add if statement for stores
                             if(row.type === "farm"){
                                 this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address+"<br/><br/><b>Ingredients</b><br/>"+row.ingredients,row.type);
                             }
@@ -102,18 +103,21 @@ class MyPureMap extends React.Component {
 //                        this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
 //                        this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
 //                        this.updateMarkers([36.07355195,-79.09970025],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        //                        this.updateMarkers([35.4574095,-77.6873196],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
-                        //                        this.updateMarkers([36.348511,-78.267849],"<b>Bender Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
+//                        this.updateMarkers([35.4574095,-77.6873196],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
+//                        this.updateMarkers([36.348511,-78.267849],"<b>Bender Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
                         this.map.addLayer(this.farms);
                         this.map.addLayer(this.stores);
                         this.stores.on('click', (ev)=>{
+                            let coord1 = ev.latlng.toString().split(',');
+                            let lat = parseFloat(coord1[0].split('(')[1]);
+                            let x1 = lat.toFixed(4);
+                            let lng = parseFloat(coord1[1].split(')')[0]);
+                            let y1 = lng.toFixed(4);
+                            let value = this.list.get(x1 + "," + y1);
                             L.DomEvent.on(
-                                document.getElementById('button1'),
+                                document.getElementById('button' + value),
                                 'click',
                                 () => {
-                                    let coord = ev.latlng.toString().split(',');
-                                    let lat = coord[0].split('(')[1];
-                                    let lng = coord[1].split(')')[0];
                                     if ((this.self_lat) && (this.self_lng)) {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
@@ -137,13 +141,16 @@ class MyPureMap extends React.Component {
                             }
                         });
                         this.farms.on('click', (ev)=>{
+                            let coord1 = ev.latlng.toString().split(',');
+                            let lat = parseFloat(coord1[0].split('(')[1]);
+                            let x1 = lat.toFixed(4);
+                            let lng = parseFloat(coord1[1].split(')')[0]);
+                            let y1 = lng.toFixed(4);
+                            let value = this.list.get(x1 + "," + y1);
                             L.DomEvent.on(
-                                document.getElementById('button1'),
+                                document.getElementById('button' + value),
                                 'click',
                                 () => {
-                                    let coord = ev.latlng.toString().split(',');
-                                    let lat = coord[0].split('(')[1];
-                                    let lng = coord[1].split(')')[0];
                                     if ((this.self_lat) && (this.self_lng)) {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
@@ -186,7 +193,10 @@ class MyPureMap extends React.Component {
 
     }
     updateMarkers(location, popup_title, popup_texts, marker_type) {
-        let popup_directive = "&emsp;<button id='button1'>Directions</button><br/><br/>";
+        let key = location[0].toFixed(4) + "," + location[1].toFixed(4);
+        this.list.set(key, this.count);
+        let popup_directive = `&emsp;<button id='button` + this.count + `'>Directions</button><br/><br/>`;
+        this.count++;
         if (marker_type === "store") {
             L.marker(location).bindPopup(popup_title + popup_directive + popup_texts).bindTooltip(popup_title, {direction: "left"}).openTooltip().addTo(this.stores);
         }
