@@ -34,7 +34,6 @@ class MyPureMap extends React.Component {
         this.self_lng = null;
         this.route = null;
         this.lcontrol = null;
-        super(props);
         this.state = {
             updateFlag: false,
             updateLocation: null,
@@ -53,6 +52,9 @@ class MyPureMap extends React.Component {
                 zoomOffset: -1,
                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(this.map);
+        }
+        if (L.Browser.mobile || L.Browser.mobileWebkit) {
+            this.map.removeControl(this.map.zoomControl);
         }
         this.lcontrol = L.control.locate({
             keepCurrentZoomLevel: true,
