@@ -1,6 +1,6 @@
 import React from 'react';
 import L from 'leaflet';
-import 'leaflet-routing-machine/dist/leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.min';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet/dist/leaflet.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,7 +9,6 @@ import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder';
 import 'default-passive-events/dist/index';
-//import axios from 'axios';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -85,12 +84,12 @@ class MyPureMap extends React.Component {
         let http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.send();
-        http.onload = function(e) {
-            if (http.readyState === 4){
-                if (http.status === 200){
+        http.onload = function() {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
                     let res = JSON.parse(http.response);
                     if (this.map) {
-                        for (let row of res){
+                        for (let row of res) {
                             //only works for farms, add if statement for stores
                             this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address+"<br/><br/><b>Ingredients</b><br/>"+row.ingredients,row.type);
                         }
@@ -114,10 +113,23 @@ class MyPureMap extends React.Component {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
                                     else {
-                                        alert("Please enable the locate service before using navigation!");
+                                        this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                        this.route.show();
                                     }
                                 }
                             );
+                        });
+                        this.stores.on("contextmenu", (ev)=>{
+                            let coord = ev.latlng.toString().split(',');
+                            let lat = coord[0].split('(')[1];
+                            let lng = coord[1].split(')')[0];
+                            if ((this.self_lat) && (this.self_lng)) {
+                                this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
+                            }
+                            else {
+                                this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                this.route.show();
+                            }
                         });
                         this.farms.on('click', (ev)=>{
                             L.DomEvent.on(
@@ -131,10 +143,23 @@ class MyPureMap extends React.Component {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
                                     else {
-                                        alert("Please enable the locate service before using navigation!");
+                                        this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                        this.route.show();
                                     }
                                 }
                             );
+                        });
+                        this.farms.on("contextmenu", (ev)=>{
+                            let coord = ev.latlng.toString().split(',');
+                            let lat = coord[0].split('(')[1];
+                            let lng = coord[1].split(')')[0];
+                            if ((this.self_lat) && (this.self_lng)) {
+                                this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
+                            }
+                            else {
+                                this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                this.route.show();
+                            }
                         });
                         let Empty = {};
                         let Overlap = {
