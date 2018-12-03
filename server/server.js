@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 var bodyParser = require('body-parser');
 var cors = require('cors');
+var cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -15,43 +16,114 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(express.static(buildDir));
+app.use(cookieParser());
 
-app.get("/", function(req, res){
-    res.sendFile(buildDir + '/index.html');
-});
 
-app.listen(port, function () {
-    console.log("app running");
-});
 
 var router = express.Router();
+app.use('/api', router);
 
 //db code
 const { Client } = require('pg');
 
-const client = new Client({
+var opts={
     user: 'mspkzoomifopri',
     host: 'ec2-23-23-153-145.compute-1.amazonaws.com',
     database: 'dtbm7brrdl65',
     password: 'a242718e221e1b5ce5e1f18f924cb31997e017d3a852a5f433cc67b8fa66da7c',
     port: 5432,
     ssl: true
-},);
+}
 
-client.connect();
 
-client.query('SELECT * FROM map;', (err, res) => {
-    if (err) throw err;
-    var rowNum=0;
+router.get('/login',function (req,res) {
+    var username = req.query.username;
+    var password = req.query.password;
+    const c = new Client(opts);
+    c.connect();
+    c.query("select * from login where username=\'" + username + "\'and password=\'" + password + "\'", function (err,result) {
+
+        if (err) throw err;
+        if (result.rows.length!=0){
+            res.cookie("name",username);
+            res.cookie("password",password).send("cookie set");
+        }
+        else{
+            res.send('not ok')
+        }
+        c.end();
+    })
+})
+
+router.post('/newpost', function (req,res) {
+
+    const c = new Client(opts);
+    c.connect();
+    c.query("insert into feed (title, announcement, today) values (\'" + req.body.title + "\',\'" + req.body.feed +"\',NOW())",function (err,result){
+        if (err) throw err;
+        res.send("success");
+        c.end();
+    })
+})
+
+router.get('/posts', function (req,res) {
+    const c = new Client(opts);
+    c.connect();
     var output = [];
-    for (let row of res.rows) {
-        var temp = JSON.parse(JSON.stringify(row));
-        output.push(temp)
-    }
-    console.log(output)
-    router.get('/', function(req, res) {
-        res.json(output);   
+    c.query("Select * from feed;", (err,result)=> {
+        if (err) throw err;
+        for (let row of result.rows) {
+            var temp = JSON.parse(JSON.stringify(row));
+            output.push(temp)
+        }
+        res.json(output);
+        c.end;
+
+    })
+})
+
+router.get('/auth',function (req,res) {
+    var username = req.cookies.name;
+    var password = req.cookies.password;
+    const c = new Client(opts);
+    c.connect();
+    c.query("select * from login where username=\'" + username + "\'and password=\'" + password + "\'", function (err,result) {
+
+        if (err) throw err;
+        if (result.rows.length!=0){
+            res.send("ok");
+        }
+        else{
+            res.send('not ok')
+        }
+        c.end();
+    })
+
+
+})
+
+router.get('/map',function (req,res) {
+    const client = new Client(opts);
+    client.connect();
+
+    client.query('SELECT * FROM map;', (err, result) => {
+        if (err) throw err;
+        var rowNum=0;
+        var output = [];
+        for (let row of result.rows) {
+            var temp = JSON.parse(JSON.stringify(row));
+            output.push(temp)
+        }
+        res.json(output);
+
+        client.end();
     });
-    app.use('/api', router);
-    client.end();
+})
+
+app.get("/*", function(req, res){
+    res.sendFile(buildDir + '/index.html');
+});
+
+app.listen(port, function () {
+    console.log("app running");
 });

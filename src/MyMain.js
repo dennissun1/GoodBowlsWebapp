@@ -15,6 +15,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Collapse from '@material-ui/core/Collapse';
 import MyFeed from "./MyFeed";
+import admin from "./admin";
+import adminui from "./adminui"
 import Bowl1 from "./Bowl1";
 import Bowl2 from "./Bowl2";
 import Bowl3 from "./Bowl3";
@@ -234,6 +236,8 @@ class MyMain extends React.Component {
                                 <Route exact path = '/bowl1' component={Bowl1}/>
                                 <Route exact path = '/bowl2' component={Bowl2}/>
                                 <Route exact path = '/bowl3' component={Bowl3}/>
+                                <Route exact path = '/admin' component={admin}/>
+                                <Route exact path = '/adminui' component={adminui}/>
                                 {/*<Route exact path = '/makeyourownbowls' component={MyMakeOwnBowls}/>*/}
                             </Switch>
                         </div>
