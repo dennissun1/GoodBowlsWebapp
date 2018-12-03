@@ -102,7 +102,7 @@ router.get('/auth',function (req,res) {
 
 })
 
-router.get('/map',function (req,res) {
+app.get('/mapapi',function (req,res) {
     const client = new Client(opts);
     client.connect();
 
