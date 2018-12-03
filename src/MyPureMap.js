@@ -1,6 +1,6 @@
 import React from 'react';
 import L from 'leaflet';
-import 'leaflet-routing-machine/dist/leaflet-routing-machine';
+import 'leaflet-routing-machine/dist/leaflet-routing-machine.min';
 import 'leaflet-routing-machine/dist/leaflet-routing-machine.css';
 import 'leaflet/dist/leaflet.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -9,7 +9,6 @@ import 'leaflet.locatecontrol/dist/L.Control.Locate.min'
 import 'leaflet-control-geocoder/dist/Control.Geocoder.css';
 import 'leaflet-control-geocoder/dist/Control.Geocoder';
 import 'default-passive-events/dist/index';
-//import axios from 'axios';
 import './MyPureMap.css';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -34,6 +33,8 @@ class MyPureMap extends React.Component {
         this.self_lng = null;
         this.route = null;
         this.lcontrol = null;
+        this.count = 0;
+        this.list = new Map();
         this.state = {
             updateFlag: false,
             updateLocation: null,
@@ -81,60 +82,96 @@ class MyPureMap extends React.Component {
             router: L.Routing.mapbox("pk.eyJ1IjoicWlhb2ZlbmdtYXJjbyIsImEiOiJjam85aWludHAwNWd2M3FtazBnMWJka2tjIn0.z7xc-bNrxVuieK6h71x7tg")
         });
         this.route.addTo(this.map);
-        let url = "/api";
+        let url = "/mapapi";
         let http = new XMLHttpRequest();
         http.open("GET", url, true);
         http.send();
-        http.onload = function(e) {
-            if (http.readyState === 4){
-                if (http.status === 200){
+        http.onload = function() {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
                     let res = JSON.parse(http.response);
                     if (this.map) {
-                        for (let row of res){
-                            //only works for farms, add if statement for stores
-                            this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address+"<br/><br/><b>Ingredients</b><br/>"+row.ingredients,row.type);
+                        for (let row of res) {
+                            if(row.type === "farm"){
+                                this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address+"<br/><br/><b>Ingredients</b><br/>"+row.ingredients,row.type);
+                            }
+                            if(row.type === "store"){
+                                this.updateMarkers([row.latitude,row.longitude], "<b>"+row.name+"</b>", row.address,row.type);
+                            }
                         }
-                        this.updateMarkers([35.996435, -78.916603], "<b>Durham Co-op Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits", "store");
-                        this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        this.updateMarkers([36.07355195,-79.09970025],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
-                        this.updateMarkers([35.4574095,-77.6873196,-78.2229939],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
+//                        this.updateMarkers([35.996435, -78.916603], "<b>Durham Co-op Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits", "store");
+//                        this.updateMarkers([35.9111483,-79.0713636076655],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
+//                        this.updateMarkers([35.8801334,-79.0660226],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
+//                        this.updateMarkers([36.07355195,-79.09970025],"<b>Weaver Street Market</b>", "Chicken Burrito Style Bowl<br />Vegetables & Chicken over Rice<br />Sausage & Peppers Bowl with Cheese Grits","store");
+//                        this.updateMarkers([35.4574095,-77.6873196],"<b>Jones Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
 //                        this.updateMarkers([36.348511,-78.267849],"<b>Bender Farms</b>", "Sweet Potatoes<br />Greens (Collards/Kale)<br />Summer Squash<br />Cauliflower<br />Peas<br />Corn<br />Tomatoes","farm");
                         this.map.addLayer(this.farms);
                         this.map.addLayer(this.stores);
                         this.stores.on('click', (ev)=>{
+                            let coord1 = ev.latlng.toString().split(',');
+                            let lat = parseFloat(coord1[0].split('(')[1]);
+                            let x1 = lat.toFixed(4);
+                            let lng = parseFloat(coord1[1].split(')')[0]);
+                            let y1 = lng.toFixed(4);
+                            let value = this.list.get(x1 + "," + y1);
                             L.DomEvent.on(
-                                document.getElementById('button1'),
+                                document.getElementById('button' + value),
                                 'click',
                                 () => {
-                                    let coord = ev.latlng.toString().split(',');
-                                    let lat = coord[0].split('(')[1];
-                                    let lng = coord[1].split(')')[0];
                                     if ((this.self_lat) && (this.self_lng)) {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
                                     else {
-                                        alert("Please enable the locate service before using navigation!");
+                                        this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                        this.route.show();
                                     }
                                 }
                             );
                         });
+                        this.stores.on("contextmenu", (ev)=>{
+                            let coord = ev.latlng.toString().split(',');
+                            let lat = coord[0].split('(')[1];
+                            let lng = coord[1].split(')')[0];
+                            if ((this.self_lat) && (this.self_lng)) {
+                                this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
+                            }
+                            else {
+                                this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                this.route.show();
+                            }
+                        });
                         this.farms.on('click', (ev)=>{
+                            let coord1 = ev.latlng.toString().split(',');
+                            let lat = parseFloat(coord1[0].split('(')[1]);
+                            let x1 = lat.toFixed(4);
+                            let lng = parseFloat(coord1[1].split(')')[0]);
+                            let y1 = lng.toFixed(4);
+                            let value = this.list.get(x1 + "," + y1);
                             L.DomEvent.on(
-                                document.getElementById('button1'),
+                                document.getElementById('button' + value),
                                 'click',
                                 () => {
-                                    let coord = ev.latlng.toString().split(',');
-                                    let lat = coord[0].split('(')[1];
-                                    let lng = coord[1].split(')')[0];
                                     if ((this.self_lat) && (this.self_lng)) {
                                         this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
                                     }
                                     else {
-                                        alert("Please enable the locate service before using navigation!");
+                                        this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                        this.route.show();
                                     }
                                 }
                             );
+                        });
+                        this.farms.on("contextmenu", (ev)=>{
+                            let coord = ev.latlng.toString().split(',');
+                            let lat = coord[0].split('(')[1];
+                            let lng = coord[1].split(')')[0];
+                            if ((this.self_lat) && (this.self_lng)) {
+                                this.updateRoutes([this.self_lat, this.self_lng], [lat, lng]);
+                            }
+                            else {
+                                this.route.spliceWaypoints(1, 1, [lat, lng]);
+                                this.route.show();
+                            }
                         });
                         let Empty = {};
                         let Overlap = {
@@ -156,7 +193,10 @@ class MyPureMap extends React.Component {
 
     }
     updateMarkers(location, popup_title, popup_texts, marker_type) {
-        let popup_directive = "&emsp;<button id='button1'>Directions</button><br/><br/>";
+        let key = location[0].toFixed(4) + "," + location[1].toFixed(4);
+        this.list.set(key, this.count);
+        let popup_directive = `&emsp;<button id='button` + this.count + `'>Directions</button><br/><br/>`;
+        this.count++;
         if (marker_type === "store") {
             L.marker(location).bindPopup(popup_title + popup_directive + popup_texts).bindTooltip(popup_title, {direction: "left"}).openTooltip().addTo(this.stores);
         }

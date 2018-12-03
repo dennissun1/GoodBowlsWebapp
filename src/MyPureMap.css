@@ -3,6 +3,28 @@
   width: 100vw;
   position: fixed;
 }
+.leaflet-routing-container h2{
+  font-size: 0.8rem !important;
+  padding-top: 0 !important;
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+.leaflet-routing-container h3{
+  font-size: 0.8rem !important;
+  text-align: right !important;
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.leaflet-routing-alt, .leaflet-routing-geocoders, .leaflet-routing-error {
+  padding: 6px;
+  margin-top: 2px;
+  border-bottom: 1px solid #ccc;
+  max-width: 70vw;
+  max-height: 50vh;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+}
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn {
   position: absolute;
   left: 5.5px;
@@ -10,4 +32,5 @@
   width: 18px;
   height: 18px;
   background-image: url('./navigation.png');
+  cursor: pointer;
 }

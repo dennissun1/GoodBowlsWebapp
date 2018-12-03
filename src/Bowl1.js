@@ -1,22 +1,23 @@
 import React from 'react';
 import './Recipes.css';
+import {NavLink} from "react-router-dom";
 
 class Bowl1 extends React.Component {
     render() {
         return(
             <div className="recipes">
-                <h2 className="bowl-title">Chicken Burrito Style Bowl</h2>
+                <h3 className="bowl-title">Chicken Burrito Style Bowl</h3>
                 <div className="video-container">
                     <iframe title="video1" src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameBorder="0" allow="autoplay; encrypted-media" />
                 </div>
                 <h3 className="sub-title">Ingredients</h3>
-                <p> 1 head cauliflower<br />
-                    1 chicken breast, diced<br />
-                    1 cup  peas<br />
-                    1 cup  carrot<br />
-                    2 tablespoons  soy sauce<br />
-                    2 teaspoons  black pepper<br />
-                    3 eggs, beaten<br />
+                <p> 1 head cauliflower<br/>
+                    1 chicken breast, diced<br/>
+                    1 cup  peas<br/>
+                    1 cup  carrot<br/>
+                    2 tablespoons  soy sauce<br/>
+                    2 teaspoons  black pepper<br/>
+                    3 eggs, beaten<br/>
                     2 tablespoons  sesame seed
                 </p>
 
@@ -29,6 +30,12 @@ class Bowl1 extends React.Component {
                   <li>Spread the rice towards the edge of the pan, creating a well in the center. Pour the beaten eggs into the well, stirring only the eggs until they are cooked.</li>
                   <li>Fold the eggs into the rice, then mix in the sesame seeds.</li>
                 </ol>
+            
+                <p><br/><br/>More Recipes:<br/>
+                <NavLink to='/bowl2'>Vegetables & Chicken over Rice with Coconut Curry Sauce</NavLink><br/>
+                <NavLink to='/bowl3'>Sausage & Peppers Bowl with Cheese Grits</NavLink><br/>
+            </p>
+                 
             </div>
         );
     }

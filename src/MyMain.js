@@ -37,7 +37,7 @@ const styles = theme => ({
         }),
     },
     appBarShift: {
-        width: `70vw`,
+        width: `75vw`,
         transition: theme.transitions.create(['margin', 'width'], {
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
@@ -51,11 +51,11 @@ const styles = theme => ({
         display: 'none',
     },
     drawer: {
-        width: `30vw !important`,
+        width: `25vw !important`,
         flexShrink: 0,
     },
     drawerPaper: {
-        width: `30vw`,
+        width: `25vw`,
     },
     drawerHeader: {
         display: 'flex',
@@ -75,7 +75,7 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        marginLeft: `-30vw`,
+        marginLeft: `-25vw`,
         overflow: 'auto',
         height: `100vh`,
     },
@@ -169,7 +169,7 @@ class MyMain extends React.Component {
                             paper: classes.drawerPaper,
                         }}>
                         <div className={classes.drawerHeader}>
-                            <Typography variant="h5" noWrap className={classes.drawerHeaderText}>Welcome!</Typography>
+                            <Typography variant="h5" noWrap className={classes.drawerHeaderText}/>
                             <IconButton onClick={this.handleDrawerClose}>
                                 <ChevronLeftIcon/>
                             </IconButton>
@@ -177,48 +177,22 @@ class MyMain extends React.Component {
                         <List>
                             <NavLink to='/map' className={classes.navlink}><ListItem button onClick={this.handleClose}>Map</ListItem></NavLink>
                             <NavLink to='/feed' className={classes.navlink}><ListItem button onClick={this.handleClose}>Feed</ListItem></NavLink>
-                            {/*<NavLink to='/makeyourownbowls' className={classes.navlink}><ListItem button>Make your own Bowls</ListItem></NavLink>*/}
                             <NavLink to='/recipes' className={classes.navlink}><ListItem button onClick={this.handleClick}>Recipes</ListItem></NavLink>
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
                                     <NavLink to='/bowl1' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            
-                                                <ListItemText
-                                                    disableTypography
-                                                    primary={
-                                                <Typography style={{ color: '#1dbe2b' }}>
-                                                  Chicken Burrito
-                                                </Typography>
-                                              }/>
-                                                
-                                                
+                                            <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Burrito</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl2' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            
-                                            <ListItemText
-                                                    disableTypography
-                                                    primary={
-                                                <Typography style={{ color: '#1dbe2b' }}>
-                                                  Chicken Curry
-                                                </Typography>
-                                              }/>
-
+                                            <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Curry</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
                                     <NavLink to='/bowl3' className={classes.navlink}>
                                         <ListItem button className={classes.nested}>
-                                            
-                                            <ListItemText
-                                                    disableTypography
-                                                    primary={
-                                                <Typography style={{ color: '#1dbe2b' }}>
-                                                  Sausage & Peppers Bowl
-                                                </Typography>
-                                              }/>
-                                                
+                                            <ListItemText><Typography style={{ color: '#1dbe2b' }}>Sausage & Peppers Bowl</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
                                 </List>
