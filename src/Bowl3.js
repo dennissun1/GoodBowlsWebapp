@@ -1,11 +1,12 @@
 import React from 'react';
 import './Recipes.css';
+import {NavLink} from "react-router-dom";
 
 class Bowl3 extends React.Component {
     render() {
         return(
            <div className="recipes">
-                <h2 className="bowl-title">Sausage & Peppers Bowl with Cheese Grits</h2>
+                <h3 className="bowl-title">Sausage & Peppers Bowl with Cheese Grits</h3>
 
                 <div className="video-container">
                     <iframe title="video3" src="https://www.youtube.com/embed/AEhBwiIEdj4" frameBorder="0" allow="autoplay; encrypted-media" />
@@ -32,6 +33,10 @@ class Bowl3 extends React.Component {
                   <li>Fold the eggs into the rice, then mix in the sesame seeds.</li>
                 </ol>
                 
+                <p><br/><br/>More Recipes:<br/>
+               <NavLink to='/bowl1'>Chicken Burrito Style Bowl</NavLink><br/>
+                <NavLink to='/bowl2'>Vegetables & Chicken over Rice with Coconut Curry Sauce</NavLink></p>
+            
             </div>
         );
     }
