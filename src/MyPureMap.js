@@ -48,6 +48,7 @@ class MyPureMap extends React.Component {
             L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA',
                 maxZoom: 18,
+                minZoom: 5,
                 id: 'mapbox.streets',
                 tileSize: 512,
                 zoomOffset: -1,
@@ -57,6 +58,29 @@ class MyPureMap extends React.Component {
         if (L.Browser.mobile || L.Browser.mobileWebkit) {
             this.map.removeControl(this.map.zoomControl);
         }
+        L.ResetControl = L.Control.extend({
+            options: {
+                position: 'topright',
+            },
+            initialize: function(options) {
+                L.Util.setOptions(this, options);
+            },
+            onAdd: function() {
+                let container = L.DomUtil.create('div', 'leaflet-reset-container');
+                let btn = L.DomUtil.create('div', 'leaflet-reset-button', container);
+                L.DomEvent
+                    .disableClickPropagation(btn)
+                    .on(btn, 'click', function() {
+                        window.location.reload();
+                    });
+                return container;
+            },
+            onRemove: function() {
+            }
+        });
+        L.control.reset = (options)=> {
+            return new L.ResetControl(options);
+        };
         this.lcontrol = L.control.locate({
             keepCurrentZoomLevel: true,
             locateOptions: {
@@ -179,6 +203,7 @@ class MyPureMap extends React.Component {
                             "Stores": this.stores
                         };
                         L.control.layers(Empty, Overlap, {collapsed: false}).addTo(this.map);
+                        L.control.reset().addTo(this.map);
                     }
                 }
             }

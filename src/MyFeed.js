@@ -1,7 +1,5 @@
 import React from 'react';
-
 class My_Feed extends React.Component {
-
 
     constructor (props){
         super(props);
@@ -18,7 +16,7 @@ class My_Feed extends React.Component {
             if (http.readyState === 4) {
                 if (http.status === 200) {
                     let res = JSON.parse(http.response);
-                    for(var i=4; i<res.length; i++){
+                    for(let i = 4; i < res.length; i++){
                         this.setState({id:[...this.state.id, res[i].id]});
                         this.setState({title:[...this.state.title, res[i].title]});
                         this.setState({feed:[...this.state.feed, res[i].announcement]});
