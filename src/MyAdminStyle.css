@@ -1,0 +1,12 @@
+.fstyle {
+    margin: auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 0 0 8px #888888;
+}
+.dstyle {
+    text-align: center;
+    margin: 40px;
+}

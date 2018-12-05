@@ -31,6 +31,30 @@
   top: 0.7vh;
   width: 18px;
   height: 18px;
+  background-repeat: no-repeat;
   background-image: url('./navigation.png');
   cursor: pointer;
+}
+.leaflet-routing-container-hide:hover {
+  background-color: #F4F4F4;
+}
+.leaflet-reset-button {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  display: block;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  padding: 3px;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  box-shadow: 0 1px 7px rgba(0, 0, 0, 0.65);
+  background-image: url('./reset.png');
+  background-size: 18px 18px;
+  background-color: white;
+  cursor: pointer;
+}
+.leaflet-reset-button:hover {
+  background-color: #F4F4F4;
 }
