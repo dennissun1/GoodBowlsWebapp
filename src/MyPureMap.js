@@ -44,7 +44,7 @@ class MyPureMap extends React.Component {
     }
     componentDidMount() {
         if (!this.map) {
-            this.map = L.map('map').setView([35.8, -78.5], 8);
+            this.map = L.map('map', {touchZoom: true, bounceAtZoomLimits: false}).setView([35.8, -78.5], 8);
             L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/{z}/{x}/{y}?access_token={accessToken}', {
                 accessToken: 'pk.eyJ1IjoiZHN1bjk2IiwiYSI6ImNqbXBzNmZwaDFpZngza3F0MXh4Z2dvOXoifQ.q0ZZVXcQDfysTF-Jq2CJjA',
                 maxZoom: 18,

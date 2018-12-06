@@ -35,6 +35,7 @@ const styles = theme => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
+        touchAction: 'none'
     },
     appBarShift: {
         width: `75vw`,
@@ -98,6 +99,7 @@ const styles = theme => ({
     appBarSpacer: theme.mixins.toolbar,
     container: {
         position: 'relative',
+        touchAction: 'none'
     },
     nested: {
     },
