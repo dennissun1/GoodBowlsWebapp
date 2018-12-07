@@ -6,12 +6,9 @@ import RecImg from "./cooking.png"
 import './MyHome.css';
 
 class MyHome extends React.Component {
-	componentDidMount() {
-		this.node.scrollIntoView({block: "start", inline: "start"});
-	}
     render() {
         return(
-            <div ref={node => this.node = node}>
+            <div>
                 <h3>Welcome to the Good Bowls Web App!</h3>
 				<h2>Good Bowls are locally sourced, nutritious frozen meals designed to promote health for people, the community, and the planet, while tackling food insecurity, the lack of dependable access to affordable, healthy food. 
 				Good Bowls are for sale at two price points: the higher in premium food stores frequented by higher-income consumers, and the lower in convenience stores, which tend to be frequented by lower-income consumers for daily food needs particularly in “food deserts.”
