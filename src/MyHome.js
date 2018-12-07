@@ -15,7 +15,7 @@ class MyHome extends React.Component {
 				We aim to promote healthy food access for all while also supporting local sustainable agriculture.</h2>
 
 				<div className="container">
-					<img src= {MapImg} className="image" alt="Maps"/>
+					<img src= {MapImg} className="image" alt="Map"/>
 					<div className="centered">
 						<p>Learn about where you can purchase Good Bowls and where we source our ingredients. To use navigation, enable your location services<br/><br/></p>
 						<NavLink to='/map'><button className="btn">Maps</button></NavLink>
