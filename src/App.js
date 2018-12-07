@@ -4,9 +4,9 @@ import MyMain from './MyMain';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        document.addEventListener('touchmove', function (event) {
-            if (event.scale !== 1) { event.preventDefault(); }
-        }, false);
+        document.addEventListener('gesturestart', function (e) {
+            e.preventDefault();
+        });
     }
     render() {
         return (
