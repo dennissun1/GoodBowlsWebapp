@@ -4,7 +4,7 @@ import MyMain from './MyMain';
 class App extends React.Component {
     constructor(props) {
         super(props);
-        document.addEventListener('gesturestart', function (e) {
+        document.addEventListener('gesturestart', (e)=> {
             e.preventDefault();
         });
     }
