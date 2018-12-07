@@ -90,12 +90,15 @@ class MyPureMap extends React.Component {
         });
         this.lcontrol.addTo(this.map);
         this.map.on('locationfound', (e)=>{
-            let coord = e.latlng.toString().split(',');
-            this.self_lat = coord[0].split('(')[1];
-            this.self_lng = coord[1].split(')')[0];
-            if (this.route.getWaypoints()[1]) {
-                this.route.spliceWaypoints(0, 1, [this.self_lat, this.self_lng]);
-                this.route.show();
+            let wps = this.route.getWaypoints();
+            if (wps[0].name === "") {
+                let coord = e.latlng.toString().split(',');
+                this.self_lat = coord[0].split('(')[1];
+                this.self_lng = coord[1].split(')')[0];
+                if (wps[1].name !== "") {
+                    this.route.spliceWaypoints(0, 1, [this.self_lat, this.self_lng]);
+                    this.route.show();
+                }
             }
         });
         this.route = L.Routing.control({
