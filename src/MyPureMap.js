@@ -93,6 +93,10 @@ class MyPureMap extends React.Component {
             let coord = e.latlng.toString().split(',');
             this.self_lat = coord[0].split('(')[1];
             this.self_lng = coord[1].split(')')[0];
+            if (this.route.getWaypoints()[1]) {
+                this.route.spliceWaypoints(0, 1, [this.self_lat, this.self_lng]);
+                this.route.show();
+            }
         });
         this.route = L.Routing.control({
             position: "topleft",

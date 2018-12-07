@@ -1,7 +1,7 @@
 {
-  "main.css": "/static/css/main.05476ba3.chunk.css",
-  "main.js": "/static/js/main.ce6864e8.chunk.js",
-  "main.js.map": "/static/js/main.ce6864e8.chunk.js.map",
+  "main.css": "/static/css/main.1c846ef8.chunk.css",
+  "main.js": "/static/js/main.6d41e89e.chunk.js",
+  "main.js.map": "/static/js/main.6d41e89e.chunk.js.map",
   "static/css/1.eecccafe.chunk.css": "/static/css/1.eecccafe.chunk.css",
   "static/js/1.37cb5897.chunk.js": "/static/js/1.37cb5897.chunk.js",
   "static/js/1.37cb5897.chunk.js.map": "/static/js/1.37cb5897.chunk.js.map",
@@ -10,9 +10,9 @@
   "static/media/Map.png": "/static/media/Map.80f50388.png",
   "static/media/font-awesome.min.css": "/static/media/fontawesome-webfont.912ec66d.svg",
   "static/media/cooking.png": "/static/media/cooking.10eb580c.png",
+  "static/css/main.1c846ef8.chunk.css.map": "/static/css/main.1c846ef8.chunk.css.map",
   "static/css/1.eecccafe.chunk.css.map": "/static/css/1.eecccafe.chunk.css.map",
-  "static/css/main.05476ba3.chunk.css.map": "/static/css/main.05476ba3.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.0500baf946caff5d76600a652eaac43c.js": "/precache-manifest.0500baf946caff5d76600a652eaac43c.js",
+  "precache-manifest.925e93cc4cbcf2de4f3bc133e1455cfb.js": "/precache-manifest.925e93cc4cbcf2de4f3bc133e1455cfb.js",
   "service-worker.js": "/service-worker.js"
 }
