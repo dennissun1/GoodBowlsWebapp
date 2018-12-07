@@ -31,9 +31,13 @@ class My_Feed extends React.Component {
         this.getFeedData();
     }
 
+    componentDidMount() {
+        this.node.scrollIntoView({block: "start", inline: "start"});
+    }
+
     render() {
         return(
-            <div>
+            <div ref={node => this.node = node}>
                 <h1 style={{textAlign:'center'}}>Feed</h1>
                 <div style={{textAlign:'center',display: 'block', border: "1px solid #ccc", margin:"20px"}}>
                     {this.state.title.map((item,index) => (
