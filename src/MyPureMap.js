@@ -97,7 +97,6 @@ class MyPureMap extends React.Component {
                 this.self_lng = coord[1].split(')')[0];
                 if (wps[1].name !== "") {
                     this.route.spliceWaypoints(0, 1, [this.self_lat, this.self_lng]);
-                    this.route.show();
                 }
             }
         });
