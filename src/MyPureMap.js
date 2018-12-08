@@ -205,7 +205,7 @@ class MyPureMap extends React.Component {
                         });
                         let Empty = {};
                         let Overlap = {
-                            "Farm": this.farms,
+                            "Farms": this.farms,
                             "Stores": this.stores
                         };
                         L.control.layers(Empty, Overlap, {collapsed: false}).addTo(this.map);
