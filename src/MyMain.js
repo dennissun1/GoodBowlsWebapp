@@ -106,6 +106,11 @@ const styles = theme => ({
 });
 
 class MyMain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.mainRef = React.createRef();
+    }
+
     state = {
         open: false,
         tabOpen: false,
@@ -126,6 +131,10 @@ class MyMain extends React.Component {
     handleDrawerClose = () => {
         this.setState({open: false});
     };
+
+    scrollToTop = () => {
+        this.mainRef.current.scrollTo(0, 0);
+    }
 
     render() {
         const { classes } = this.props;
@@ -182,17 +191,29 @@ class MyMain extends React.Component {
                             <NavLink to='/recipes' className={classes.navlink}><ListItem button onClick={this.handleClick}>Recipes</ListItem></NavLink>
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
-                                    <NavLink to='/bowl1' className={classes.navlink}>
+                                    <NavLink
+                                        onClick={this.scrollToTop}
+                                        to='/bowl1'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Burrito</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
-                                    <NavLink to='/bowl2' className={classes.navlink}>
+                                    <NavLink
+                                        onClick={this.scrollToTop}
+                                        to='/bowl2'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Curry</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
-                                    <NavLink to='/bowl3' className={classes.navlink}>
+                                    <NavLink
+                                        onClick={this.scrollToTop}
+                                        to='/bowl3'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Sausage & Peppers Bowl</Typography></ListItemText>
                                         </ListItem>
@@ -201,7 +222,14 @@ class MyMain extends React.Component {
                             </Collapse>
                         </List>
                     </Drawer>
-                    <main className={classNames(classes.content, {[classes.contentShift]: open,})}>
+                    <main
+                        className={
+                            classNames(classes.content, {
+                                [classes.contentShift]: open,
+                            })
+                        }
+                        ref={this.mainRef}
+                    >
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
