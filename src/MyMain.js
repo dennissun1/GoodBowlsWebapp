@@ -192,7 +192,6 @@ class MyMain extends React.Component {
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
                                     <NavLink
-                                        onClick={this.scrollToTop}
                                         to='/bowl1'
                                         className={classes.navlink}
                                     >
@@ -201,7 +200,6 @@ class MyMain extends React.Component {
                                         </ListItem>
                                     </NavLink>
                                     <NavLink
-                                        onClick={this.scrollToTop}
                                         to='/bowl2'
                                         className={classes.navlink}
                                     >
@@ -210,7 +208,6 @@ class MyMain extends React.Component {
                                         </ListItem>
                                     </NavLink>
                                     <NavLink
-                                        onClick={this.scrollToTop}
                                         to='/bowl3'
                                         className={classes.navlink}
                                     >
@@ -233,15 +230,42 @@ class MyMain extends React.Component {
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
-                                <Route exact path = '/' component={MyHome}/>
-                                <Route exact path = '/map' component={MyPureMap}/>
-                                <Route exact path = '/feed' component={MyFeed}/>
-                                <Route exact path = '/recipes' component={MyMakeOwnBowls}/>
-                                <Route exact path = '/bowl1' component={Bowl1}/>
-                                <Route exact path = '/bowl2' component={Bowl2}/>
-                                <Route exact path = '/bowl3' component={Bowl3}/>
-                                <Route exact path = '/admin' component={MyAdmin}/>
-                                <Route exact path = '/adminui' component={MyAdminUI}/>
+                                <Route exact path='/'
+                                    component={MyHome}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/map'
+                                    component={MyPureMap}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/feed'
+                                    component={MyFeed}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/recipes'
+                                    component={MyMakeOwnBowls}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/bowl1'
+                                    component={Bowl1}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/bowl2'
+                                    component={Bowl2}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/bowl3'
+                                    component={Bowl3}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/admin'
+                                    component={MyAdmin}
+                                    onChange={this.scrollToTop}
+                                />
+                                <Route exact path='/adminui'
+                                    component={MyAdminUI}
+                                    onChange={this.scrollToTop}
+                                />
                             </Switch>
                         </div>
                     </main>
