@@ -3,9 +3,6 @@ import './Recipes.css';
 import {NavLink} from "react-router-dom";
 
 class Bowl2 extends React.Component {
-    componentDidMount() {
-        this.node.scrollIntoView({block: "start", inline: "nearest"});
-    }
     render() {
         return(
             <div className = "recipes" ref={node => this.node = node}>
