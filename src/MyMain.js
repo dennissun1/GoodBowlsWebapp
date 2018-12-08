@@ -25,6 +25,8 @@ import MyPureMap from './MyPureMap';
 import MyHome from './MyHome';
 import MyMakeOwnBowls from './MyMakeOwnBowls'
 
+import {history} from './index';
+
 const styles = theme => ({
     root: {
         display: 'flex',
@@ -105,10 +107,25 @@ const styles = theme => ({
     },
 });
 
+const routes = [
+    { path: '/', component: MyHome },
+    { path: '/map', component: MyPureMap },
+    { path: '/feed', component: MyFeed },
+    { path: '/recipes', component: MyMakeOwnBowls },
+    { path: '/bowl1', component: Bowl1 },
+    { path: '/bowl2', component: Bowl2 },
+    { path: '/bowl3', component: Bowl3 },
+    { path: '/admin', component: MyAdmin },
+    { path: '/adminui', component: MyAdminUI },
+]
+
 class MyMain extends React.Component {
     constructor(props) {
         super(props);
         this.mainRef = React.createRef();
+        history.listen(() => {
+            this.mainRef.current.scrollTo(0, 0);
+        })
     }
 
     state = {
@@ -131,10 +148,6 @@ class MyMain extends React.Component {
     handleDrawerClose = () => {
         this.setState({open: false});
     };
-
-    scrollToTop = () => {
-        this.mainRef.current.scrollTo(0, 0);
-    }
 
     render() {
         const { classes } = this.props;
@@ -230,42 +243,9 @@ class MyMain extends React.Component {
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
-                                <Route exact path='/'
-                                    component={MyHome}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/map'
-                                    component={MyPureMap}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/feed'
-                                    component={MyFeed}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/recipes'
-                                    component={MyMakeOwnBowls}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/bowl1'
-                                    component={Bowl1}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/bowl2'
-                                    component={Bowl2}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/bowl3'
-                                    component={Bowl3}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/admin'
-                                    component={MyAdmin}
-                                    onChange={this.scrollToTop}
-                                />
-                                <Route exact path='/adminui'
-                                    component={MyAdminUI}
-                                    onChange={this.scrollToTop}
-                                />
+                                {routes.map(route => (
+                                    <Route exact {...route} key={route.path} />
+                                ))}
                             </Switch>
                         </div>
                     </main>
