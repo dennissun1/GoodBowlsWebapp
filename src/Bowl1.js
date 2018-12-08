@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 class Bowl1 extends React.Component {
     render() {
         return(
-            <div className="recipes" ref={node => this.node = node}>
+            <div className="recipes">
                 <h3 className="bowl-title">Chicken Burrito Style Bowl</h3>
                 <div className="video-container">
                     <iframe title="video1" src="https://www.youtube.com/embed/YUFn7MZ4RAM" frameBorder="0" allow="autoplay; encrypted-media" />

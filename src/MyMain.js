@@ -24,7 +24,6 @@ import {Switch, Route, NavLink} from 'react-router-dom';
 import MyPureMap from './MyPureMap';
 import MyHome from './MyHome';
 import MyMakeOwnBowls from './MyMakeOwnBowls'
-
 import {history} from './index';
 
 const styles = theme => ({
@@ -117,7 +116,7 @@ const routes = [
     { path: '/bowl3', component: Bowl3 },
     { path: '/admin', component: MyAdmin },
     { path: '/adminui', component: MyAdminUI },
-]
+];
 
 class MyMain extends React.Component {
     constructor(props) {
