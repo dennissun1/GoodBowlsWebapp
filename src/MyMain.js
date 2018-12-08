@@ -24,6 +24,7 @@ import {Switch, Route, NavLink} from 'react-router-dom';
 import MyPureMap from './MyPureMap';
 import MyHome from './MyHome';
 import MyMakeOwnBowls from './MyMakeOwnBowls'
+import {history} from './index';
 
 const styles = theme => ({
     root: {
@@ -105,7 +106,27 @@ const styles = theme => ({
     },
 });
 
+const routes = [
+    { path: '/', component: MyHome },
+    { path: '/map', component: MyPureMap },
+    { path: '/feed', component: MyFeed },
+    { path: '/recipes', component: MyMakeOwnBowls },
+    { path: '/bowl1', component: Bowl1 },
+    { path: '/bowl2', component: Bowl2 },
+    { path: '/bowl3', component: Bowl3 },
+    { path: '/admin', component: MyAdmin },
+    { path: '/adminui', component: MyAdminUI },
+];
+
 class MyMain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.mainRef = React.createRef();
+        history.listen(() => {
+            this.mainRef.current.scrollTo(0, 0);
+        })
+    }
+
     state = {
         open: false,
         tabOpen: false,
@@ -182,17 +203,26 @@ class MyMain extends React.Component {
                             <NavLink to='/recipes' className={classes.navlink}><ListItem button onClick={this.handleClick}>Recipes</ListItem></NavLink>
                             <Collapse in={this.state.tabOpen} timeout="auto">
                                 <List component="div" disablePadding>
-                                    <NavLink to='/bowl1' className={classes.navlink}>
+                                    <NavLink
+                                        to='/bowl1'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Burrito</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
-                                    <NavLink to='/bowl2' className={classes.navlink}>
+                                    <NavLink
+                                        to='/bowl2'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Chicken Curry</Typography></ListItemText>
                                         </ListItem>
                                     </NavLink>
-                                    <NavLink to='/bowl3' className={classes.navlink}>
+                                    <NavLink
+                                        to='/bowl3'
+                                        className={classes.navlink}
+                                    >
                                         <ListItem button className={classes.nested}>
                                             <ListItemText><Typography style={{ color: '#1dbe2b' }}>Sausage & Peppers Bowl</Typography></ListItemText>
                                         </ListItem>
@@ -201,19 +231,20 @@ class MyMain extends React.Component {
                             </Collapse>
                         </List>
                     </Drawer>
-                    <main className={classNames(classes.content, {[classes.contentShift]: open,})}>
+                    <main
+                        className={
+                            classNames(classes.content, {
+                                [classes.contentShift]: open,
+                            })
+                        }
+                        ref={this.mainRef}
+                    >
                         <div className={classes.appBarSpacer} />
                         <div className={classes.container}>
                             <Switch>
-                                <Route exact path = '/' component={MyHome}/>
-                                <Route exact path = '/map' component={MyPureMap}/>
-                                <Route exact path = '/feed' component={MyFeed}/>
-                                <Route exact path = '/recipes' component={MyMakeOwnBowls}/>
-                                <Route exact path = '/bowl1' component={Bowl1}/>
-                                <Route exact path = '/bowl2' component={Bowl2}/>
-                                <Route exact path = '/bowl3' component={Bowl3}/>
-                                <Route exact path = '/admin' component={MyAdmin}/>
-                                <Route exact path = '/adminui' component={MyAdminUI}/>
+                                {routes.map(route => (
+                                    <Route exact {...route} key={route.path} />
+                                ))}
                             </Switch>
                         </div>
                     </main>
