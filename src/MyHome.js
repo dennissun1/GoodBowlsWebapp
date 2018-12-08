@@ -17,7 +17,7 @@ class MyHome extends React.Component {
 				<div className="container">
 					<img src= {MapImg} className="image" alt="Map"/>
 					<div className="centered">
-						<p>Learn about where you can purchase Good Bowls and where we source our ingredients. To use navigation, enable your location services<br/><br/></p>
+						<p>Learn about where you can purchase Good Bowls and where we source our ingredients. To use navigation, enable the location service first.<br/><br/></p>
 						<NavLink to='/map'><button className="btn">Map</button></NavLink>
 					</div>
 				</div>
