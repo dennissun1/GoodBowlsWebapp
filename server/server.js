@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser')
 
 const app = express();
 
-const port = process.env.PORT || 8082;
+const port = process.env.PORT || 8080;
 console.log('Server is on port ' + port);
 
 const buildDir = path.join(__dirname, '../build');
@@ -55,6 +55,18 @@ router.get('/login',function (req,res) {
     })
 })
 
+router.post('/newfarm', function (req,res) {
+    const c = new Client(opts);
+    c.connect();
+    c.query("insert into map (address, name, ingredients, type, latitude, longitude) values (\'" + req.body.address + "\',\'" + req.body.name + "\',\'" + req.body.ingredients + "\',\'" + req.body.type + "\',\'" + req.body.latitude + "\',\'" +req.body.longitude +"\')", function (err,result){
+        if (err){
+            console.log(err);
+        }
+        res.send("success");
+        c.end;
+    })
+})
+
 
 router.post('/newstore', function (req,res) {
     const c = new Client(opts);
@@ -93,6 +105,18 @@ router.delete('/deletefeed', function (req, res){
 })
 
 router.delete('/deletestore', function (req,res) {
+    const c = new Client(opts);
+    c.connect();
+    c.query("delete from map where address=\'" + req.body.address + "\'", function (err,result) {
+        if(err){
+            console.log(err);
+        }
+        res.send("success");
+        c.end();
+    })
+})
+
+router.delete('/deletefarm', function (req,res) {
     const c = new Client(opts);
     c.connect();
     c.query("delete from map where address=\'" + req.body.address + "\'", function (err,result) {
