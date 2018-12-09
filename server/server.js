@@ -55,6 +55,19 @@ router.get('/login',function (req,res) {
     })
 })
 
+
+router.post('/newstore', function (req,res) {
+    const c = new Client(opts);
+    c.connect();
+    c.query("insert into map (address, name, type, latitude, longitude) values (\'" + req.body.address + "\',\'" + req.body.name + "\',\'" + req.body.type + "\',\'" + req.body.latitude + "\',\'" +req.body.longitude +"\')", function (err,result){
+        if (err){
+            console.log(err);
+        }
+        res.send("success");
+        c.end;
+    })
+})
+
 router.post('/newpost', function (req,res) {
 
     const c = new Client(opts);
