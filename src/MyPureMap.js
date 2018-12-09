@@ -35,12 +35,6 @@ class MyPureMap extends React.Component {
         this.lcontrol = null;
         this.count = 0;
         this.list = new Map();
-        this.state = {
-            updateFlag: false,
-            updateLocation: null,
-            popUp: null,
-            dbData: null
-        };
     }
     componentDidMount() {
         if (!this.map) {

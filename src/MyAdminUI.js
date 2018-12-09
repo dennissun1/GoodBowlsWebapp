@@ -226,7 +226,7 @@ class MyAdminUI extends React.Component {
             if (http.readyState === 4) {
                 if (http.status === 200) {
                     let res = http.response;
-                    if(res="success"){
+                    if(res === "success"){
                         window.location.reload();
                     }
                 }
@@ -245,7 +245,7 @@ class MyAdminUI extends React.Component {
             if (http.readyState === 4) {
                 if (http.status === 200) {
                     let res = http.response;
-                    if(res="success"){
+                    if(res === "success"){
                         window.location.reload();
                     }
                 }
@@ -264,7 +264,7 @@ class MyAdminUI extends React.Component {
             if (http.readyState === 4) {
                 if (http.status === 200) {
                     let res = http.response;
-                    if(res="success"){
+                    if(res === "success"){
                         window.location.reload();
                     }
                 }
