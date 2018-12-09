@@ -5,7 +5,7 @@ class MyAdminUI extends React.Component {
 
     constructor (props){
         super(props);
-        this.state = {isAuthenticated:false, new_title:'', feed:'', new_address:'', new_type:'', new_name:'', new_latitude:'', new_longitude:'', id:[], title:[], address:[], type:[]};
+        this.state = {isAuthenticated:false, new_title:'', feed:'', new_address:'', new_type:'', new_name:'', new_latitude:'', new_longitude:'', id:[], title:[], address:[]};
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleFeedChange = this.handleFeedChange.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
@@ -16,13 +16,13 @@ class MyAdminUI extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleClickStore = this.handleClickStore.bind(this);
         this.getFeedData = this.getFeedData.bind(this);
-       // this.getStoreData = this.getStoreData.bind(this);
+        this.getStoreData = this.getStoreData.bind(this);
     }
 
     componentWillMount() {
         this.checkAuth();
         this.getFeedData();
-        //this.getStoreData();
+        this.getStoreData();
     }
 
     handleTitleChange(event){
@@ -136,30 +136,45 @@ class MyAdminUI extends React.Component {
         }.bind(this);
     }
 
-    // getStoreData(){
-    //     let url = "/api/mapapi";
-    //     let http = new XMLHttpRequest();
-    //     http.open("GET", url, true);
-    //     http.send();
-    //     http.onload = function (e) {
-    //         if (http.readyState === 4) {
-    //             if (http.status === 200) {
-    //                 let res = JSON.parse(http.response);
-    //                 if (this.map) {
-    //                     for (let row of res) {
-    //                         if (row.type === "store") {
-    //                             this.setState({address:[...this.state.address,row.address]});
-    //
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    // }
+    getStoreData(){
+        let url = "/mapapi";
+        let http = new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onload = function (e) {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
+                    let res = JSON.parse(http.response);
+                    console.log(res);
+                    for (let row of res) {
+                        if (row.type === "store") {
+                            this.setState({address:[...this.state.address,row.address]});
+                        }
+                    }
+                }
+            }
+        }.bind(this);
+    }
 
+    deleteStore(index,e){
+        let url = "/api/deletestore";
+        var params = "address=" + this.state.address[index];
+        let http = new XMLHttpRequest();
+        http.open("DELETE", url, true);
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        http.send(params);
+        http.onload = function (e) {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
+                    let res = http.response;
+                    if(res="success"){
+                        window.location.reload();
+                    }
+                }
+            }
+        }
+    }
     deleteFeed(index,e){
-        console.log(this.state.id[index]);
         let url = "/api/deletefeed";
         var params = "id=" + this.state.id[index];
         let http = new XMLHttpRequest();
@@ -244,6 +259,21 @@ class MyAdminUI extends React.Component {
                     <br/>
                     <input type = "submit" value = "Add Store" />
                 </form>
+                    <div>
+                        <div ref={node => this.node = node}>
+                            <h1 style={{textAlign:'center'}}>Stores</h1>
+                            <div style={{textAlign:'center',display: 'block', border: "1px solid #ccc", margin:"20px"}}>
+                                {this.state.address.map((item,index) => (
+                                    <div>
+                                        {this.state.address[index]}
+                                        <button onClick={(e)=>this.deleteStore(index,e)}>
+                                            delete
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
             </div>
             </div>
             : null;

@@ -92,6 +92,18 @@ router.delete('/deletefeed', function (req, res){
     })
 })
 
+router.delete('/deletestore', function (req,res) {
+    const c = new Client(opts);
+    c.connect();
+    c.query("delete from map where address=\'" + req.body.address + "\'", function (err,result) {
+        if(err){
+            console.log(err);
+        }
+        res.send("success");
+        c.end();
+    })
+})
+
 router.get('/posts', function (req,res) {
     const c = new Client(opts);
     c.connect();
