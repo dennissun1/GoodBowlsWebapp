@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser')
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8082;
 console.log('Server is on port ' + port);
 
 const buildDir = path.join(__dirname, '../build');
@@ -61,6 +61,19 @@ router.post('/newpost', function (req,res) {
     c.connect();
     c.query("insert into feed (title, announcement, today) values (\'" + req.body.title + "\',\'" + req.body.feed +"\',NOW())",function (err,result){
         if (err) throw err;
+        res.send("success");
+        c.end();
+    })
+})
+
+router.delete('/deletefeed', function (req, res){
+    const c = new Client(opts);
+    c.connect();
+    console.log(req.body.id);
+    c.query("delete from feed where id=\'"+req.body.id + "\'",  function (err, result){
+        if (err){
+            console.log(err);
+        }
         res.send("success");
         c.end();
     })

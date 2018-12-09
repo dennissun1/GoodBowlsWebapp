@@ -5,14 +5,16 @@ class MyAdminUI extends React.Component {
 
     constructor (props){
         super(props);
-        this.state = {isAuthenticated:false, new_title:'', feed:''};
+        this.state = {isAuthenticated:false, new_title:'', feed:'', id:[], title:[]};
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleFeedChange = this.handleFeedChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.getFeedData = this.getFeedData.bind(this);
     }
 
     componentWillMount() {
         this.checkAuth();
+        this.getFeedData();
     }
 
     handleTitleChange(event){
@@ -38,6 +40,7 @@ class MyAdminUI extends React.Component {
                     if(res === "success"){
                         this.setState({feed:''});
                         this.setState({new_title:''});
+                        window.location.reload();
                     }
                 }
             }
@@ -63,6 +66,45 @@ class MyAdminUI extends React.Component {
 
     }
 
+    getFeedData(){
+        let url = "/api/posts";
+        let http = new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onload = function (e) {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
+                    let res = JSON.parse(http.response);
+                    for(let i = 4; i < res.length; i++){
+                        this.setState({id:[...this.state.id, res[i].id]});
+                        this.setState({title:[...this.state.title, res[i].title]});
+                    }
+                }
+            }
+        }.bind(this);
+    }
+
+
+    deleteFeed(index,e){
+        console.log(this.state.id[index]);
+        let url = "/api/deletefeed";
+        var params = "id=" + this.state.id[index];
+        let http = new XMLHttpRequest();
+        http.open("DELETE", url, true);
+        http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        http.send(params);
+        http.onload = function (e) {
+            if (http.readyState === 4) {
+                if (http.status === 200) {
+                    let res = http.response;
+                    if(res="success"){
+                        window.location.reload();
+                    }
+                }
+            }
+        }
+    }
+
     render() {
         return this.state.isAuthenticated
             ?  <div className="dstyle">
@@ -82,6 +124,21 @@ class MyAdminUI extends React.Component {
                     <br/>
                     <input type = "submit" value = "Add Announcement" />
                 </form>
+                <div>
+                    <div ref={node => this.node = node}>
+                        <h1 style={{textAlign:'center'}}>Feed</h1>
+                        <div style={{textAlign:'center',display: 'block', border: "1px solid #ccc", margin:"20px"}}>
+                            {this.state.title.map((item,index) => (
+                               <div>
+                                   {this.state.title[index]}
+                                   <button onClick={(e)=>this.deleteFeed(index,e)}>
+                                       delete
+                                   </button>
+                               </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
             </div>
             : null;
     }
